@@ -1,4 +1,4 @@
-# Trainyourself
+# ToDo
 ##### Ein ToDo List App welches dir beim planen deines Altages hilft.                                                                   
 
 ### Unser Daily Scrum findet täglich um 08:45 statt.
