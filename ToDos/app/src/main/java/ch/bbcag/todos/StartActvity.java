@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 
 public class StartActvity extends AppCompatActivity {
 
@@ -23,6 +24,10 @@ public class StartActvity extends AppCompatActivity {
                 addToDo(view);
             }
         });
+
+        Button offene = (Button) findViewById(R.id.buttonOffen);
+
+        Button erledigt = (Button) findViewById(R.id.buttonErledigt);
     }
 
     private void addToDo(View view){
