@@ -1,5 +1,6 @@
 package ch.bbcag.todos;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -25,7 +26,8 @@ public class StartActvity extends AppCompatActivity {
     }
 
     private void addToDo(View view){
-
+        Intent intent = new Intent(this, CreateActivity.class);
+        startActivity(intent);
     }
 
 }
