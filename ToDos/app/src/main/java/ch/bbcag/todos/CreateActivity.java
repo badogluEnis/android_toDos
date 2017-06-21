@@ -13,9 +13,9 @@ public class CreateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create);
     }
 
-    public void showTimePickerDialog(View v) {
-        TimePickerFragment newFragment = new TimePickerFragment();
-        newFragment.show(getSupportFragmentManager(), "Datum auswählen");
+    public void showDatePickerDialog(View v) {
+        DatePickerFragment newFragment = new DatePickerFragment();
+        newFragment.show(getFragmentManager(), "datePicker");
     }
 
     private void createTodo(View view){
