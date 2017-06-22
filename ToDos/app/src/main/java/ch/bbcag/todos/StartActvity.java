@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 public class StartActvity extends AppCompatActivity {
 
+    ListView list;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +48,11 @@ public class StartActvity extends AppCompatActivity {
             }
         });
 
+        ListView list = (ListView) findViewById(R.id.listview);
+
 
     }
+
 
     private void addToDo(View view) {
         Intent intent = new Intent(this, CreateActivity.class);
@@ -70,21 +75,24 @@ public class StartActvity extends AppCompatActivity {
 
     }
 
-    /*//Definition einer anonymen Klicklistener Klasse
+/*
+    //Definition einer anonymen Klicklistener Klasse
     AdapterView.OnItemClickListener mListClickedHandler = new AdapterView.OnItemClickListener() {
         public void onItemClick(AdapterView parent, View v, int position, long id) {
-            Intent intent = new Intent(getApplicationContext(), DetailsActivity.class);
+            Intent intent = new Intent(getApplicationContext(), CreateActivity.class);
             String selected = parent.getItemAtPosition(position).toString();
 //Kleine Infobox anzeigen
             Toast.makeText(StartActvity.this, selected, Toast.LENGTH_SHORT).show();
 //Intent mit Zusatzinformationen - hier die Badi Nummer
 
-            intent.putExtra("", allBadis.get(position).get(0));
-
-            intent.putExtra("name", selected);
             startActivity(intent);
         }
     };
-        badis.setOnItemClickListener(mListClickedHandler);
+
+    @Override
+    public void onClick(View v) {
+
+    }
+        list.setOnItemClickListener(mListClickedHandler);
 */
 }
