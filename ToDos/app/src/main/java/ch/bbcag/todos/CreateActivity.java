@@ -3,11 +3,12 @@ package ch.bbcag.todos;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class CreateActivity extends AppCompatActivity {
 
+    TextView date2;
     EditText date;
     DatePickerFragment datePicker;
 
@@ -17,6 +18,7 @@ public class CreateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create);
 
         date = (EditText) findViewById(R.id.date);
+        date2 = (TextView) findViewById(R.id.date);
         datePicker = new DatePickerFragment();
 
         date.setOnClickListener(new View.OnClickListener() {
