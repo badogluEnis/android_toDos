@@ -8,7 +8,7 @@ public class ToDosHelper extends SQLiteOpenHelper {
 
     private static ToDosHelper Instance;
 
-    private static final String DATABASE_NAME = "ToDos.db";
+    private static final String DATABASE_NAME = "ToDos";
     private static final int DATABASE_VERSION = 1;
 
     private static final String TABLE_TODOS = "ToDos";
@@ -18,6 +18,7 @@ public class ToDosHelper extends SQLiteOpenHelper {
     private static final String TODOS_DESCRIPTION = "description";
     private static final String TODOS_DATE = "date";
     private static final String TODOS_PUSHMESSAGE = "pushmessage";
+    private static final String TODOS_ISOPEN = "isopen";
 
     public static synchronized ToDosHelper getInstance(Context context) {
         if (Instance == null) {
@@ -37,7 +38,7 @@ public class ToDosHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_TODO_TABLE = "CREATA TABLE " + TABLE_TODOS + "(" + TODOS_ID + "INTEGER PRIMARY KEY AUTOINCREMENT," + TODOS_TITLE + "TEXT NOT NULL," + TODOS_DESCRIPTION + "TEXT," + TODOS_DATE + "TEXT," + TODOS_PUSHMESSAGE + "INTEGER NOT NULL" + ")";
+        String CREATE_TODO_TABLE = "CREATA TABLE " + TABLE_TODOS + "(" + TODOS_ID + "INTEGER PRIMARY KEY AUTOINCREMENT," + TODOS_TITLE + "TEXT NOT NULL," + TODOS_DESCRIPTION + "TEXT," + TODOS_DATE + "TEXT," + TODOS_PUSHMESSAGE + "INTEGER NOT NULL" + TODOS_ISOPEN + "INTEGER NOT NULL" + ")";
         db.execSQL(CREATE_TODO_TABLE);
     }
 
