@@ -3,6 +3,7 @@ package ch.bbcag.todos;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class ToDosHelper extends SQLiteOpenHelper {
 
@@ -38,7 +39,7 @@ public class ToDosHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_TODO_TABLE = "CREATA TABLE " + TABLE_TODOS + "(" + TODOS_ID + "INTEGER PRIMARY KEY AUTOINCREMENT," + TODOS_TITLE + "TEXT NOT NULL," + TODOS_DESCRIPTION + "TEXT," + TODOS_DATE + "TEXT," + TODOS_PUSHMESSAGE + "INTEGER NOT NULL" + TODOS_ISOPEN + "INTEGER NOT NULL" + ")";
+        String CREATE_TODO_TABLE = "CREATE TABLE " + TABLE_TODOS + "(" + TODOS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + TODOS_TITLE + " TEXT NOT NULL, " + TODOS_DESCRIPTION + " TEXT," + TODOS_DATE + " TEXT, " + TODOS_PUSHMESSAGE + " INTEGER NOT NULL, " + TODOS_ISOPEN + " INTEGER NOT NULL" + ")";
         db.execSQL(CREATE_TODO_TABLE);
     }
 

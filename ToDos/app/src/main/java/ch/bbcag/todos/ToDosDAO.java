@@ -3,7 +3,6 @@ package ch.bbcag.todos;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.ContentObservable;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
