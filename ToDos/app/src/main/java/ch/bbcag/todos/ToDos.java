@@ -6,6 +6,8 @@ public final class ToDos {
     private String title;
     private String description;
     private String date;
+    private boolean pushmessage;
+    private boolean isopen;
 
     public int getId() {
         return id;
@@ -54,9 +56,6 @@ public final class ToDos {
     public void setIsopen(boolean isopen) {
         this.isopen = isopen;
     }
-
-    private boolean pushmessage;
-    private boolean isopen;
 
 
 }

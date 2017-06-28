@@ -8,10 +8,11 @@ import android.util.Log;
 public class ToDosHelper extends SQLiteOpenHelper {
 
 
-
+    public static final String DATABASE_NAME = "ToDos.db";
+    public static final int DATABASE_VERSION = 1;
 
     public ToDosHelper(Context context) {
-        super(context, ToDosEntry.DATABASE_NAME, null, ToDosEntry.DATABASE_VERSION);
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     public void onConfigure(SQLiteDatabase db) {
@@ -21,8 +22,7 @@ public class ToDosHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String CREATE_TODO_TABLE = "CREATA TABLE " + ToDosEntry.TABLE_TODOS + "(" + ToDosEntry.TODOS_ID + "INTEGER PRIMARY KEY AUTOINCREMENT," + ToDosEntry.TODOS_TITLE + "TEXT NOT NULL," + ToDosEntry.TODOS_DESCRIPTION + "TEXT," + ToDosEntry.TODOS_DATE + "TEXT," + ToDosEntry.TODOS_PUSHMESSAGE + "INTEGER NOT NULL" + ToDosEntry.TODOS_ISOPEN + "INTEGER NOT NULL" + ")";
-        db.execSQL(CREATE_TODO_TABLE);
+        db.execSQL(String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY, %s TEXT, %s TEXT, %s TEXT, %s INTEGER,%s INTEGER)", ToDosEntry.TABLE_TODOS, ToDosEntry.TODOS_ID, ToDosEntry.TODOS_TITLE, ToDosEntry.TODOS_DESCRIPTION, ToDosEntry.TODOS_DATE, ToDosEntry.TODOS_PUSHMESSAGE, ToDosEntry.TODOS_ISOPEN));
     }
 
     @Override

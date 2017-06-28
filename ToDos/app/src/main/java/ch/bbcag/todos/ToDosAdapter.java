@@ -14,7 +14,7 @@ import android.widget.TextView;
 import java.util.List;
 
 
-public class ToDosAdapter extends ArrayAdapter<ClipData.Item> {
+public class ToDosAdapter extends ArrayAdapter<ToDos> {
 
 
     public ToDosAdapter(Context context) {
@@ -25,18 +25,18 @@ public class ToDosAdapter extends ArrayAdapter<ClipData.Item> {
     @NonNull
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        final ClipData.Item item = getItem(position);
+        final ToDos todo = getItem(position);
 
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.todos_list_item, parent, false);
         }
-
+/*
         // Name setzen
         TextView nameView = (TextView) convertView.findViewById(R.id.name);
         nameView.setText(item.getName());
         nameView.setPaintFlags(item.isDone() ? Paint.STRIKE_THRU_TEXT_FLAG : 0);
-
+*/
         // Action zu Button hinzufügen
         Button doneButton = (Button) convertView.findViewById(R.id.mark_done);
         doneButton.setOnClickListener(new View.OnClickListener() {

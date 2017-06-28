@@ -2,8 +2,7 @@ package ch.bbcag.todos;
 
 public class ToDosEntry {
 
-    public static final String DATABASE_NAME = "ToDos";
-    public static final int DATABASE_VERSION = 1;
+
 
     public static final String TABLE_TODOS = "ToDos";
 

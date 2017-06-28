@@ -12,9 +12,7 @@ import java.util.List;
 public class ToDosDAO {
 
     private SQLiteDatabase db;
-    private ToDosHelper dbHelper;
     private static ToDosDAO instance;
-    Integer id;
 
     private ToDosDAO(Context context) {
 
@@ -33,13 +31,12 @@ public class ToDosDAO {
         db.close();
     }
 
-    public void createToDo(String title, String description, String date, Integer pushmessage, Integer isopen) {
+    public void createToDo(String title, String description, String date, Integer pushmessage) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("title", title);
         contentValues.put("description", description);
         contentValues.put("date", date);
         contentValues.put("pushmessage", pushmessage);
-        contentValues.put("isopen", isopen);
 
         db.insert("ToDos", null, contentValues);
     }
