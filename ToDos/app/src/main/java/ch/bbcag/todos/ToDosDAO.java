@@ -14,10 +14,20 @@ public class ToDosDAO {
 
     private SQLiteDatabase db;
     private ToDosHelper dbHelper;
+    private static ToDosDAO instance;
     Integer id;
 
-    public ToDosDAO(Context context) {
-        db = dbHelper.getInstance(context).getWritableDatabase();
+    private ToDosDAO(Context context) {
+
+        ToDosHelper dbHelper = new ToDosHelper(context);
+        db = dbHelper.getWritableDatabase();
+    }
+
+    public static ToDosDAO getInstance(Context context) {
+        if (instance == null) {
+            instance = new ToDosDAO(context.getApplicationContext());
+        }
+        return instance;
     }
 
     public void close() {
@@ -43,8 +53,9 @@ public class ToDosDAO {
         List<ToDos> todolist = new ArrayList<ToDos>();
 
         String[] tableColumns = new String[]{"id", "title", "description", "date", "pushmessage", "isopen"};
+        String sortOrder = String.format("%s ASC", "title");
 
-        Cursor cursor = db.query("ToDos", tableColumns, "isopen" + "=?", new String[] {isopen.toString()}, null, null, null);
+        Cursor cursor = db.query("ToDos", tableColumns, "isopen" + "=?", new String[]{isopen.toString()}, null, null, sortOrder);
 
         cursor.moveToFirst();
 
@@ -52,11 +63,11 @@ public class ToDosDAO {
             ToDos todo = new ToDos();
 
 
-            todo.setTODOS_TITLE(cursor.getString(1));
-            todo.setTODOS_DESCRIPTION(cursor.getString(2));
-            todo.setTODOS_DATE(cursor.getString(3));
-            todo.setTODO_PUSHMESSAGE(cursor.getString(4));
-            todo.setTODOS_ISOPEN(cursor.getString(5));
+            todo.setTitle(cursor.getString(1));
+            todo.setDescription(cursor.getString(2));
+            todo.setDate(cursor.getString(3));
+            todo.setPushmessage(cursor.getInt(4) == 0 ? false : true);
+            todo.setIsopen(cursor.getInt(5) == 0 ? false : true);
 
             todolist.add(todo);
 
@@ -67,7 +78,6 @@ public class ToDosDAO {
     }
 
 
-
     public void updateToDo(Integer id, String title, String description, String date, Integer pushmessage, Integer isopen) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("title", title);
@@ -76,17 +86,15 @@ public class ToDosDAO {
         contentValues.put("pushmessage", pushmessage);
         contentValues.put("isopen", isopen);
 
-        db.update("ToDos", contentValues, "id =?", new String[] {id.toString()});
+        db.update("ToDos", contentValues, "id =?", new String[]{id.toString()});
 
     }
 
-    public void updateIsOpen(Integer id){
+    public void updateIsOpen(Integer id) {
         ContentValues contenValues = new ContentValues();
         contenValues.put("isopen", 0);
-        db.update("ToDos",contenValues, "id =?", new String[] {id.toString()});
+        db.update("ToDos", contenValues, "id =?", new String[]{id.toString()});
     }
-
-
 
 
 }

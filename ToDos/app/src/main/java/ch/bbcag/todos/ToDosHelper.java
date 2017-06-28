@@ -6,30 +6,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class ToDosHelper extends SQLiteOpenHelper {
 
-    private static ToDosHelper Instance;
-
-    private static final String DATABASE_NAME = "ToDos";
-    private static final int DATABASE_VERSION = 1;
-
-    private static final String TABLE_TODOS = "ToDos";
-
-    private static final String TODOS_ID = "id";
-    private static final String TODOS_TITLE = "title";
-    private static final String TODOS_DESCRIPTION = "description";
-    private static final String TODOS_DATE = "date";
-    private static final String TODOS_PUSHMESSAGE = "pushmessage";
-    private static final String TODOS_ISOPEN = "isopen";
-
-    public static synchronized ToDosHelper getInstance(Context context) {
-        if (Instance == null) {
-            Instance = new ToDosHelper(context.getApplicationContext());
-        }
-        return Instance;
-    }
 
 
-    private ToDosHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+
+    public ToDosHelper(Context context) {
+        super(context, ToDosEntry.DATABASE_NAME, null, ToDosEntry.DATABASE_VERSION);
     }
 
     public void onConfigure(SQLiteDatabase db) {
@@ -38,14 +19,14 @@ public class ToDosHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_TODO_TABLE = "CREATA TABLE " + TABLE_TODOS + "(" + TODOS_ID + "INTEGER PRIMARY KEY AUTOINCREMENT," + TODOS_TITLE + "TEXT NOT NULL," + TODOS_DESCRIPTION + "TEXT," + TODOS_DATE + "TEXT," + TODOS_PUSHMESSAGE + "INTEGER NOT NULL" + TODOS_ISOPEN + "INTEGER NOT NULL" + ")";
+        String CREATE_TODO_TABLE = "CREATA TABLE " + ToDosEntry.TABLE_TODOS + "(" + ToDosEntry.TODOS_ID + "INTEGER PRIMARY KEY AUTOINCREMENT," + ToDosEntry.TODOS_TITLE + "TEXT NOT NULL," + ToDosEntry.TODOS_DESCRIPTION + "TEXT," + ToDosEntry.TODOS_DATE + "TEXT," + ToDosEntry.TODOS_PUSHMESSAGE + "INTEGER NOT NULL" + ToDosEntry.TODOS_ISOPEN + "INTEGER NOT NULL" + ")";
         db.execSQL(CREATE_TODO_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (oldVersion != newVersion) {
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_TODOS);
+            db.execSQL("DROP TABLE IF EXISTS " + ToDosEntry.TABLE_TODOS);
             onCreate(db);
         }
     }
