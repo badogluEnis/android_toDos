@@ -44,7 +44,7 @@ public class ToDosAdapter extends ArrayAdapter<ToDos> {
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ToDosDAO.getInstance(getContext()).updateIsOpen(position);
+                ToDosDAO.getInstance(getContext()).closeToDo(position);
                 refreshData();
             }
         });

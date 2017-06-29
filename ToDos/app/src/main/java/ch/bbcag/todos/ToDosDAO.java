@@ -87,12 +87,14 @@ public class ToDosDAO {
 
     }
 
-    public void updateIsOpen(Integer id) { //<-- Name in closeToDo ändern
+    //Hier wird ein ToDo geschlossen
+    public void closeToDo(Integer id) {
         ContentValues contenValues = new ContentValues();
         contenValues.put("isopen", 0);
         db.update("ToDos", contenValues, "id =?", new String[]{id.toString()});
     }
 
+    //Hier wird ein ToDo geöffnet
     public void reopenToDo(Integer id){
         ContentValues contentValues = new ContentValues();
         contentValues.put("isopen", 1);
