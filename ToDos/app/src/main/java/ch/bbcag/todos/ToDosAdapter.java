@@ -16,6 +16,7 @@ import java.util.List;
 
 public class ToDosAdapter extends ArrayAdapter<ToDos> {
 
+    // Hier wird das startActivity instanziert
     StartActvity startActvity = new StartActvity();
 
 
@@ -28,7 +29,7 @@ public class ToDosAdapter extends ArrayAdapter<ToDos> {
     public View getView(final int position, View convertView, ViewGroup parent) {
         final ToDos todos = getItem(position);
 
-        // Check if an existing view is being reused, otherwise inflate the view
+        // Hier wird gecheckt ob ein View existiert
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.todos_list_item, parent, false);
         }
@@ -60,6 +61,8 @@ public class ToDosAdapter extends ArrayAdapter<ToDos> {
 
         return convertView;
     }
+
+    // Hier werden die Daten refreshd
 
     public void refreshData() {
         clear();

@@ -76,8 +76,8 @@ public class ToDosDAO {
             todo.setPushmessage(cursor.getInt(4) == 0 ? false : true);
             todo.setIsopen(cursor.getInt(5) == 0 ? false : true);
 
+            //  Das ToDo wird der todolist geaddet und der cursor geht eine zeile weiter
             todolist.add(todo);
-
             cursor.moveToNext();
 
         }
@@ -85,6 +85,7 @@ public class ToDosDAO {
     }
 
 
+    // Hier wird ein ToDo updated, die ID und das isopen bleiben jedoch gleich
     public void updateToDo(Integer id, String title, String description, String date, Integer pushmessage) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("title", title);
