@@ -2,7 +2,7 @@ package ch.bbcag.todos;
 
 public class ToDosEntry {
 
-
+    // Hier werden die Columns der Tabellen die Namen gegeben um sie einfacher zu ändern
 
     public static final String TABLE_TODOS = "ToDos";
 

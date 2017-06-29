@@ -23,10 +23,12 @@ public class StartActvity extends AppCompatActivity {
 
     ListView list;
     ToDosDAO dbConnection;
-    Integer isopen = 1;
+    private ToDosAdapter ToDosAdapter;
+    private int isOpenShown = 1;
 
-
-
+    public int getIsOpenShown() {
+        return isOpenShown;
+    }
 
 
     @Override
@@ -36,7 +38,7 @@ public class StartActvity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        dbConnection = new ToDosDAO().getInstance(this);
+        // dbConnection = new ToDosDAO().getInstance(this);
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -51,7 +53,9 @@ public class StartActvity extends AppCompatActivity {
         open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openedToDos();
+                isOpenShown = 1;
+                showToDos();
+
             }
         });
 
@@ -59,57 +63,34 @@ public class StartActvity extends AppCompatActivity {
         open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                closedToDos();
+                isOpenShown = 0;
+                showToDos();
             }
         });
 
-        ListView listView = (ListView) findViewById(R.id.listview);
-
-
-
+        showToDos();
 
     }
 
+
+    private void reloadList() {
+        ToDosAdapter.refreshData();
+    }
 
     private void addToDo(View view) {
         Intent intent = new Intent(this, CreateActivity.class);
         startActivity(intent);
     }
 
-    private void openedToDos() {
 
+    private void showToDos() {
+        ListView listView = (ListView) findViewById(R.id.listview);
+
+        ToDosAdapter = new ToDosAdapter(this);
+        listView.setAdapter(ToDosAdapter);
+
+        reloadList();
     }
 
-    private void closedToDos() {
 
-    }
-
-    private void closeToDo() {
-
-    }
-
-    private void deleteToDo() {
-
-    }
-
-/*
-    //Definition einer anonymen Klicklistener Klasse
-    AdapterView.OnItemClickListener mListClickedHandler = new AdapterView.OnItemClickListener() {
-        public void onItemClick(AdapterView parent, View v, int position, long id) {
-            Intent intent = new Intent(getApplicationContext(), CreateActivity.class);
-            String selected = parent.getItemAtPosition(position).toString();
-//Kleine Infobox anzeigen
-            Toast.makeText(StartActvity.this, selected, Toast.LENGTH_SHORT).show();
-//Intent mit Zusatzinformationen - hier die Badi Nummer
-
-            startActivity(intent);
-        }
-    };
-
-    @Override
-    public void onClick(View v) {
-
-    }
-        list.setOnItemClickListener(mListClickedHandler);
-*/
 }

@@ -16,27 +16,29 @@ import java.util.List;
 
 public class ToDosAdapter extends ArrayAdapter<ToDos> {
 
+    StartActvity startActvity = new StartActvity();
+
 
     public ToDosAdapter(Context context) {
         super(context, R.layout.todos_list_item);
     }
-    private Integer isopen = 1;
 
     @NonNull
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        final ToDos todo = getItem(position);
+        final ToDos todos = getItem(position);
 
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.todos_list_item, parent, false);
         }
-/*
+
         // Name setzen
-        TextView nameView = (TextView) convertView.findViewById(R.id.name);
-        nameView.setText(item.getName());
-        nameView.setPaintFlags(item.isDone() ? Paint.STRIKE_THRU_TEXT_FLAG : 0);
-*/
+        TextView title_date = (TextView) convertView.findViewById(R.id.title_date);
+        String text = todos.getTitle() + "  " + todos.getDate();
+        title_date.setText(text);
+
+
         // Action zu Button hinzufügen
         Button doneButton = (Button) convertView.findViewById(R.id.mark_done);
         doneButton.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +63,7 @@ public class ToDosAdapter extends ArrayAdapter<ToDos> {
 
     public void refreshData() {
         clear();
-        addAll(ToDosDAO.getInstance(getContext()).getToDos(isopen));
+        addAll(ToDosDAO.getInstance(getContext()).getToDos(startActvity.getIsOpenShown()));
         notifyDataSetChanged();
     }
 

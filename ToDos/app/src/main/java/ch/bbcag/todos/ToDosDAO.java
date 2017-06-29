@@ -20,6 +20,8 @@ public class ToDosDAO {
         db = dbHelper.getWritableDatabase();
     }
 
+    // Hier ist das getInstance von ToDosDAO, es dient dazu
+
     public static ToDosDAO getInstance(Context context) {
         if (instance == null) {
             instance = new ToDosDAO(context.getApplicationContext());
