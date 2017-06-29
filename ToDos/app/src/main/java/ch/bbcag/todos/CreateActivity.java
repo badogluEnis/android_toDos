@@ -1,11 +1,15 @@
 package ch.bbcag.todos;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CreateActivity extends AppCompatActivity {
 
@@ -27,7 +31,7 @@ public class CreateActivity extends AppCompatActivity {
         name = (EditText) findViewById(R.id.name);
         desc = (EditText) findViewById(R.id.description);
         datePicker = new DatePickerFragment();
-        dbConnection = new ToDosDAO(getApplicationContext());
+        dbConnection = new ToDosDAO.getInstance(getBaseContext());
 
         date.setOnClickListener(new View.OnClickListener() {
 
@@ -56,14 +60,36 @@ public class CreateActivity extends AppCompatActivity {
         // 2. Datenbankeintrag von: Name, Desc, benachrichtigen? und Datum!!
         // 3. Wieder auf die Startactivity wechseln
 
-        if (benachrichtigung.isChecked()){
-            pushmessage = 1;
-        }
-        else {
-            pushmessage = 0;
+        Pattern p = Pattern.compile("[^\\p{L}+]");
+        Matcher m = p.matcher(name.getText().toString());
+        if(m.find()){
+
+            name.setError("Bitte verwenden sie keine Zahlen.");
         }
 
-        dbConnection.createToDo(name.getText().toString(), desc.getText().toString(), date.getText().toString(), pushmessage , 0);
+        else{
 
+            Pattern forDate = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$");
+            Matcher mForDate = forDate.matcher(date.getText().toString());
+
+            if(mForDate.find()){
+
+                date.setError("Bitte verwenden sie folgendes Format: DD.MM.JJJJ");
+            }
+            else {
+
+                if (benachrichtigung.isChecked()){
+                    pushmessage = 1;
+                }
+                else {
+                    pushmessage = 0;
+                }
+
+                dbConnection.createToDo(name.getText().toString(),  desc.getText().toString(), date.getText().toString(), pushmessage , 1);
+
+                Intent intent = new Intent(this, StartActvity.class);
+                startActivity(intent);
+            }
+        }
     }
 }
