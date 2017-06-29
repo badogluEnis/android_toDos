@@ -31,7 +31,6 @@ public class CreateActivity extends AppCompatActivity {
         name = (EditText) findViewById(R.id.name);
         desc = (EditText) findViewById(R.id.description);
         datePicker = new DatePickerFragment();
-        dbConnection = new ToDosDAO.getInstance(getBaseContext());
 
         date.setOnClickListener(new View.OnClickListener() {
 
@@ -44,17 +43,19 @@ public class CreateActivity extends AppCompatActivity {
 
     }
 
+    //Hier Schreiben wir den Text, vom Datepicker ind das Textedit.
     public void setDate(String dateText){
         date.setText(dateText);
     }
 
+    //Hier wird der Datepicker aufgerufen.
     public void showDatePickerDialog(View v) {
         DatePickerFragment newFragment = new DatePickerFragment();
         newFragment.setActivity(this);
         newFragment.show(getFragmentManager(), "Datum wählen");
     }
 
-
+    //Hier wird ein ToDo erstellt.
     public void createTodo(View view){
         // 1. Validieren der Eingaben.
         // 2. Datenbankeintrag von: Name, Desc, benachrichtigen? und Datum!!
@@ -85,7 +86,7 @@ public class CreateActivity extends AppCompatActivity {
                     pushmessage = 0;
                 }
 
-                dbConnection.createToDo(name.getText().toString(),  desc.getText().toString(), date.getText().toString(), pushmessage , 1);
+                dbConnection.getInstance(getBaseContext()).createToDo(name.getText().toString(),  desc.getText().toString(), date.getText().toString(), pushmessage);
 
                 Intent intent = new Intent(this, StartActvity.class);
                 startActivity(intent);

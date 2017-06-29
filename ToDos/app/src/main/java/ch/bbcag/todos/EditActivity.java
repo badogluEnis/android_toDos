@@ -23,7 +23,6 @@ public class EditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
-        connection = new ToDosDAO(this);
         save = (Button) findViewById(R.id.btnSave);
         cancel = (Button) findViewById(R.id.btnCancel);
         date = (EditText) findViewById(R.id.editDate);
@@ -31,6 +30,7 @@ public class EditActivity extends AppCompatActivity {
         desc = (EditText) findViewById(R.id.editDesc);
         benachrichtigung = (Switch) findViewById(R.id.editBenachrichtigen);
 
+        //Hier wird ein Listener gesetzt, welcher Dann die Daten updated, sobald man "Specihern" Klickt.
         save.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -43,7 +43,8 @@ public class EditActivity extends AppCompatActivity {
                     pushmessage = 0;
                 }
 
-                connection.updateToDo(1, name.getText().toString(), desc.getText().toString(), date.getText().toString(), pushmessage, 1);
+                //Update der Datensätze
+                connection.getInstance(getBaseContext()).updateToDo(1, name.getText().toString(), desc.getText().toString(), date.getText().toString(), pushmessage, 1);
 
             }
         });

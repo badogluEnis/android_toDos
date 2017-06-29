@@ -76,23 +76,26 @@ public class ToDosDAO {
     }
 
 
-    public void updateToDo(Integer id, String title, String description, String date, Integer pushmessage, Integer isopen) {
+    public void updateToDo(Integer id, String title, String description, String date, Integer pushmessage) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("title", title);
         contentValues.put("description", description);
         contentValues.put("date", date);
         contentValues.put("pushmessage", pushmessage);
-        contentValues.put("isopen", isopen);
 
         db.update("ToDos", contentValues, "id =?", new String[]{id.toString()});
 
     }
 
-    public void updateIsOpen(Integer id) {
+    public void updateIsOpen(Integer id) { //<-- Name in closeToDo ändern
         ContentValues contenValues = new ContentValues();
         contenValues.put("isopen", 0);
         db.update("ToDos", contenValues, "id =?", new String[]{id.toString()});
     }
 
-
+    public void reopenToDo(Integer id){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("isopen", 1);
+        db.update("", contentValues, "id=?", new String[]{id.toString()});
+    }
 }
