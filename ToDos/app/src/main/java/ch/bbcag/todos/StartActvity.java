@@ -21,11 +21,11 @@ import java.util.List;
 
 public class StartActvity extends AppCompatActivity {
 
-    ListView list;
-    ToDosDAO dbConnection;
     private ToDosAdapter ToDosAdapter;
+    // isOpenShown ist hier extra auf 1 gestellt da die erste Liste die die ListView anzeigen soll die offenen ToDos sein sollen
     private int isOpenShown = 1;
 
+    // Der getter um aus anderen Klassen auf isOpenShown zugreifen zu können
     public int getIsOpenShown() {
         return isOpenShown;
     }
@@ -33,14 +33,15 @@ public class StartActvity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        // Hier wird das Activity gemacht und der Toolbar gesetzt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_actvity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // dbConnection = new ToDosDAO().getInstance(this);
 
-
+        // Hier wird ein glickListener auf fab gesetzt(um ein neues ToDO zu erstellen)
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +50,8 @@ public class StartActvity extends AppCompatActivity {
             }
         });
 
+
+        // Die beiden Button sind um die Liste mit den Datenbankeinträgen zu zeigen
         Button open = (Button) findViewById(R.id.buttonOpen);
         open.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,17 +75,18 @@ public class StartActvity extends AppCompatActivity {
 
     }
 
-
+    // Hier wird die Liste reloaded
     private void reloadList() {
         ToDosAdapter.refreshData();
     }
 
+    // Hier wird ein neues Activity gemacht
     private void addToDo(View view) {
         Intent intent = new Intent(this, CreateActivity.class);
         startActivity(intent);
     }
 
-
+    // Hier werden die ToDOs gezeigt
     private void showToDos() {
         ListView listView = (ListView) findViewById(R.id.listview);
 

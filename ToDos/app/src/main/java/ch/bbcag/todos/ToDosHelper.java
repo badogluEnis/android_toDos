@@ -21,7 +21,7 @@ public class ToDosHelper extends SQLiteOpenHelper {
         super.onConfigure(db);
     }
 
-    // Hier wird die Datenbank erstellt mit den verschiedenen Zeilen
+    // Hier wird die Tabelle erstellt mit den verschiedenen Zeilen
     @Override
     public void onCreate(SQLiteDatabase db) {
 

@@ -2,6 +2,8 @@ package ch.bbcag.todos;
 
 
 public final class ToDos {
+
+    // Hier sind die verschiedenen getter & setter der columns in der Tabelle gemacht um sie im sonstigen Code zu verwenden
     private int id;
     private String title;
     private String description;
