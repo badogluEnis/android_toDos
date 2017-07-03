@@ -7,15 +7,12 @@
 
 Projektmitarbeiter
 
-* [Timon Hansen](https://github.com/timon3355) (Scum Master, Team Member)
+* [Timon Hansen](https://github.com/timon3355) (Team Member)
 * [Enis Badoglu](https://github.com/badogluEnis) (Team Member)
-* [Yves Peissard](https://github.com) (Product Owner)
 
 
 ## Dokumentation
 
-* [Benutzerhandbuch](docs/usermanual.md)
-* [Technische Dokumentation](docs/technical.md)
 * [Testkonzept](docs/testing.md)
 
 ## Definition of Done
