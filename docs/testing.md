@@ -7,9 +7,7 @@ Abschnitt            | Inhalt
 ID                   | T-1
 Anforderungen        | Alle ToDos werden in einer Liste angezeigt
 Vorbedingungen       | Mindestens 1 ToDo muss erfasst werden
-Ablauf               | 1.	Starten des Apps oder wechseln auf das StartActivity.
-2.	Drücken auf den Button offene ToDos(wird automatisch am Anfang angewählt)  oder erledigte ToDos.
-
+Ablauf               | 1.	Starten des Apps oder wechseln auf das StartActivity. 2.	Drücken auf den Button offene ToDos(wird automatisch am Anfang angewählt) oder erledigte ToDos.
 Erwartetes Resultat  | Man wechselt ins StartActivity und man sieht sein ToDo in der Liste mit dem Titel und dem Ablaufdatum, es sind auch zwei Buttons zu sehen (ToDo erledigt, ToDo bearbeiten)
 Testperson           |
 Getestet am          |
@@ -58,11 +56,7 @@ Abschnitt            | Inhalt
 ID                   | T-5
 Anforderungen       | ToDo als erledigt markieren
 Vorbedingungen       | Mindestens ein ToDo ist korrekt eingefügt worden
-Ablauf               | 1 Option:
-1.	In der Liste auf erledigt Button klicken
-2 Option:
-1.	In der Liste auf das ToDo klicken
-2.	In der Detailsansicht auf erledigt klicken
+Ablauf               | 1 Option: 1.	In der Liste auf erledigt Button klicken 2 Option: 1.	In der Liste auf das ToDo klicken 2.	In der Detailsansicht auf erledigt klicken
 Erwartetes Resultat  | Man wechselt zum StartActivity und man findet das ToDo nicht, jedoch nach dem Klick auf Erledigte ToDos sollte es ersichtlich sein
 Testperson           |
 Getestet am          | 
@@ -74,14 +68,7 @@ Abschnitt            | Inhalt
 ID                   | T-6
 Anforderungen        | ToDo kann bearbeitet werden
 Vorbedingungen       | Mindestens 1 ToDo muss erstellt werden
-Ablauf               | 1 Option:
-1.	Klick auf das ToDo in der Liste
-2.	Klick auf ToDo bearbeiten
-3.	ToDo bearbeiten und dann speichern
-
-2 Option:
-1.	Klick auf das bearbeiten Icon in der Liste
-2.	ToDo bearbeiten und dann speichern
+Ablauf               | 1 Option: 1.	Klick auf das ToDo in der Liste 2.	Klick auf ToDo bearbeiten 3.	ToDo bearbeiten und dann speichern 2 Option: 1.	Klick auf das bearbeiten Icon in der Liste 2.	ToDo bearbeiten und dann speichern
 Erwartetes Resultat  | Die neuen Angaben werden übernommen
 Testperson           | 
 Getestet am          | 
