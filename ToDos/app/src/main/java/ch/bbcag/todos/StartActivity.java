@@ -2,6 +2,7 @@ package ch.bbcag.todos;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -23,11 +24,10 @@ import java.util.List;
 
 public class StartActivity extends AppCompatActivity {
 
-
+    Button close;
+    Button open;
+    private int isOpenShown = 1;  // isOpenShown ist hier extra auf 1 gestellt da die erste Liste die die ListView anzeigen soll die offenen ToDos sein sollen
     private ToDosAdapter toDosAdapter;
-    // isOpenShown ist hier extra auf 1 gestellt da die erste Liste die die ListView anzeigen soll die offenen ToDos sein sollen
-    private int isOpenShown = 1;
-
     private ListView listView;
 
     // Der getter um aus anderen Klassen auf isOpenShown zugreifen zu können
@@ -47,6 +47,9 @@ public class StartActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        open = (Button) findViewById(R.id.buttonOpen);
+        close = (Button) findViewById(R.id.buttonClosed);
+
         Log.d("Database Test", ToDosDAO.getInstance(this).getToDos(1).toString());
 
         toDosAdapter = new ToDosAdapter(this);
@@ -65,20 +68,24 @@ public class StartActivity extends AppCompatActivity {
 
 
         // Die beiden Button sind um die Liste mit den Datenbankeinträgen zu zeigen
-        Button open = (Button) findViewById(R.id.buttonOpen);
         open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                close.setBackgroundColor(0x00000000);
+                open.setBackgroundResource(android.R.drawable.btn_default);
                 isOpenShown = 1;
                 reloadList();
 
             }
         });
 
-        Button closed = (Button) findViewById(R.id.buttonClosed);
-        open.setOnClickListener(new View.OnClickListener() {
+        close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                open.setBackgroundColor(0x00000000);
+                close.setBackgroundResource(android.R.drawable.btn_default);
                 isOpenShown = 0;
                 reloadList();
             }
