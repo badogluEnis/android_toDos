@@ -64,7 +64,7 @@ public class ToDosDAO {
         List<ToDos> todolist = new ArrayList<ToDos>();
 
         String[] tableColumns = new String[]{"id", "title", "description", "date", "pushmessage", "isopen"};
-        String sortOrder = String.format("%s ASC", "title");
+        String sortOrder = String.format("%s ASC, %s ASC", "date", "title");
 
         // Um nicht zwei querys zu schreiben wird muss isopen mitgegeben werden was dann hier bei isopen =? aussortiert wird
         Cursor cursor = db.query("ToDos", tableColumns, "isopen" + "=?", new String[]{isopen.toString()}, null, null, sortOrder);
