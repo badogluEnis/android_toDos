@@ -3,6 +3,7 @@ package ch.bbcag.todos;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +30,7 @@ public class StartActivity extends AppCompatActivity {
     private int isOpenShown = 1;  // isOpenShown ist hier extra auf 1 gestellt da die erste Liste die die ListView anzeigen soll die offenen ToDos sein sollen
     private ToDosAdapter toDosAdapter;
     private ListView listView;
+    Drawable defaultbutton;
 
     // Der getter um aus anderen Klassen auf isOpenShown zugreifen zu können
     public int getIsOpenShown() {
@@ -49,6 +51,7 @@ public class StartActivity extends AppCompatActivity {
 
         open = (Button) findViewById(R.id.buttonOpen);
         close = (Button) findViewById(R.id.buttonClosed);
+        defaultbutton = open.getBackground();
 
         Log.d("Database Test", ToDosDAO.getInstance(this).getToDos(1).toString());
 
@@ -73,7 +76,7 @@ public class StartActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 close.setBackgroundColor(0x00000000);
-                open.setBackgroundResource(android.R.drawable.btn_default);
+                open.setBackgroundDrawable(defaultbutton);
                 isOpenShown = 1;
                 reloadList();
 
@@ -85,7 +88,7 @@ public class StartActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 open.setBackgroundColor(0x00000000);
-                close.setBackgroundResource(android.R.drawable.btn_default);
+                close.setBackgroundDrawable(defaultbutton);
                 isOpenShown = 0;
                 reloadList();
             }
