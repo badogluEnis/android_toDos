@@ -1,21 +1,16 @@
 # ToDo
 ##### Ein ToDo List App welches dir beim planen deines Altages hilft.                                                                   
 
-### Unser Daily Scrum findet täglich um 08:45 statt.
-
 ## Projektmitabeiter
 
 Projektmitarbeiter
 
-* [Timon Hansen](https://github.com/timon3355) (Scum Master, Team Member)
+* [Timon Hansen](https://github.com/timon3355) (Team Member)
 * [Enis Badoglu](https://github.com/badogluEnis) (Team Member)
-* [Yves Peissard](https://github.com) (Product Owner)
 
 
 ## Dokumentation
 
-* [Benutzerhandbuch](docs/usermanual.md)
-* [Technische Dokumentation](docs/technical.md)
 * [Testkonzept](docs/testing.md)
 
 ## Definition of Done

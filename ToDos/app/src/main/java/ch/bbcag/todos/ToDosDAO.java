@@ -105,7 +105,7 @@ public class ToDosDAO {
     }
 
     //Hier wird ein ToDo geöffnet
-    public void reopenToDo(Integer id){
+    public void reopenToDo(Integer id) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("isopen", 1);
         db.update("", contentValues, "id=?", new String[]{id.toString()});
