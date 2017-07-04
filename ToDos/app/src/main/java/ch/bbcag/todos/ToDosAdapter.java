@@ -78,6 +78,7 @@ public class ToDosAdapter extends ArrayAdapter<ToDos> {
         clear();
         addAll(ToDosDAO.getInstance(getContext()).getToDos(context.getIsOpenShown()));
         notifyDataSetChanged();
+
     }
 
 

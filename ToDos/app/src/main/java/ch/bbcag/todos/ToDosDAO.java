@@ -46,6 +46,7 @@ public class ToDosDAO {
         contentValues.put("description", description);
         contentValues.put("date", date);
         contentValues.put("pushmessage", pushmessage);
+        contentValues.put("isopen", 1);
 
         db.insert("ToDos", null, contentValues);
     }
