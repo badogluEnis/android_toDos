@@ -17,11 +17,12 @@ import java.util.List;
 public class ToDosAdapter extends ArrayAdapter<ToDos> {
 
     // Hier wird das startActivity instanziert
-    StartActvity startActvity = new StartActvity();
-
+    //StartActivity startActvity = new StartActivity();
+    StartActivity context;
 
     public ToDosAdapter(Context context) {
         super(context, R.layout.todos_list_item);
+        this.context = (StartActivity)context;
     }
 
     @NonNull
@@ -66,7 +67,7 @@ public class ToDosAdapter extends ArrayAdapter<ToDos> {
 
     public void refreshData() {
         clear();
-        addAll(ToDosDAO.getInstance(getContext()).getToDos(startActvity.getIsOpenShown()));
+        addAll(ToDosDAO.getInstance(getContext()).getToDos(context.getIsOpenShown()));
         notifyDataSetChanged();
     }
 

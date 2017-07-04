@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,11 +21,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class StartActvity extends AppCompatActivity {
+public class StartActivity extends AppCompatActivity {
 
-    private ToDosAdapter ToDosAdapter;
+
+    private ToDosAdapter toDosAdapter;
     // isOpenShown ist hier extra auf 1 gestellt da die erste Liste die die ListView anzeigen soll die offenen ToDos sein sollen
     private int isOpenShown = 1;
+
+    private ListView listView;
 
     // Der getter um aus anderen Klassen auf isOpenShown zugreifen zu können
     public int getIsOpenShown() {
@@ -37,8 +42,16 @@ public class StartActvity extends AppCompatActivity {
         // Hier wird das Activity gemacht und der Toolbar gesetzt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_actvity);
+        listView = (ListView) findViewById(R.id.listview);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Log.d("Database Test", ToDosDAO.getInstance(this).getToDos(1).toString());
+
+        toDosAdapter = new ToDosAdapter(this);
+        toDosAdapter.addAll(ToDosDAO.getInstance(this).getToDos(1));
+        listView.setAdapter(toDosAdapter);
+
 
 
         // Hier wird ein glickListener auf fab gesetzt(um ein neues ToDO zu erstellen)
@@ -71,13 +84,13 @@ public class StartActvity extends AppCompatActivity {
             }
         });
 
-        showToDos();
+//        showToDos();
 
     }
 
     // Hier wird die Liste reloaded
     private void reloadList() {
-        ToDosAdapter.refreshData();
+        toDosAdapter.refreshData();
     }
 
     // Hier wird ein neues Activity gemacht
@@ -88,12 +101,11 @@ public class StartActvity extends AppCompatActivity {
 
     // Hier werden die ToDOs gezeigt
     private void showToDos() {
-        ListView listView = (ListView) findViewById(R.id.listview);
 
-        ToDosAdapter = new ToDosAdapter(this);
-        listView.setAdapter(ToDosAdapter);
+//        ToDosAdapter = new ToDosAdapter(this);
+//        listView.setAdapter(ToDosAdapter);
 
-        reloadList();
+//        reloadList();
     }
 
 

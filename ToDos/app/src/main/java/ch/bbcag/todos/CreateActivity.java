@@ -88,7 +88,7 @@ public class CreateActivity extends AppCompatActivity {
 
                 dbConnection.getInstance(getBaseContext()).createToDo(name.getText().toString(),  desc.getText().toString(), date.getText().toString(), pushmessage);
 
-                Intent intent = new Intent(this, StartActvity.class);
+                Intent intent = new Intent(this, StartActivity.class);
                 startActivity(intent);
             }
         }

@@ -1,5 +1,6 @@
 package ch.bbcag.todos;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +10,6 @@ import android.widget.Switch;
 
 public class EditActivity extends AppCompatActivity {
 
-    ToDosDAO connection;
     Button save;
     Button cancel;
     EditText date;
@@ -17,12 +17,14 @@ public class EditActivity extends AppCompatActivity {
     EditText desc;
     Switch benachrichtigung;
     int pushmessage;
+    int id_vom_TODO; //nur ein reminder!!
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
+        id_vom_TODO = 1;
         save = (Button) findViewById(R.id.btnSave);
         cancel = (Button) findViewById(R.id.btnCancel);
         date = (EditText) findViewById(R.id.editDate);
@@ -44,14 +46,21 @@ public class EditActivity extends AppCompatActivity {
                 }
 
                 //Update der Datensätze
-                connection.getInstance(getBaseContext()).updateToDo(1, name.getText().toString(), desc.getText().toString(), date.getText().toString(), pushmessage, 1);
+                ToDosDAO.getInstance(getBaseContext()).updateToDo(id_vom_TODO, name.getText().toString(), desc.getText().toString(), date.getText().toString(), pushmessage);
 
             }
         });
 
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), StartActivity.class);
+                startActivity(intent);
+            }
 
+        });
 
-        connection.getToDos(1);
+        ToDosDAO.getInstance(getBaseContext()).getToDos(1);
 
     }
 
