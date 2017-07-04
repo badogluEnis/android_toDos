@@ -20,27 +20,33 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
     private String date_shown;
 
     public void setActivity(Activity activity){
+
         this.activity = activity;
     }
 
     public int getYear_ip() {
+
         return year_ip;
     }
 
     public int getMonth_ip() {
+
         return month_ip;
     }
 
     public int getDay_ip() {
+
         return day_ip;
     }
 
     public String getDate_shown() {
+
         return date_shown;
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+
         // Use the current date as the default date in the picker
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
@@ -52,6 +58,7 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
     }
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
+
         date_shown = day + ". " + month + ". " + year;
         year_ip = year;
         month_ip = month;

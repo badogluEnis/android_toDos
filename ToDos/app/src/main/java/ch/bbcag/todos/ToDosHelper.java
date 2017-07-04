@@ -14,10 +14,12 @@ public class ToDosHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
 
     public ToDosHelper(Context context) {
+
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     public void onConfigure(SQLiteDatabase db) {
+
         super.onConfigure(db);
     }
 
@@ -31,6 +33,7 @@ public class ToDosHelper extends SQLiteOpenHelper {
     // Hier wird die Datenbank upgraded (also die Datenbank wird gedropt und wieder erstellt)
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
         if (oldVersion != newVersion) {
             db.execSQL(" TABLE IF EXISTS " + ToDosEntry.TABLE_TODOS);
             onCreate(db);
@@ -40,7 +43,9 @@ public class ToDosHelper extends SQLiteOpenHelper {
 
     // Hier wird die Datenbank zurückgstuft
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
         onUpgrade(db, oldVersion, newVersion);
+
     }
 
 

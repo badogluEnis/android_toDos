@@ -32,6 +32,7 @@ public class StartActivity extends AppCompatActivity {
 
     // Der getter um aus anderen Klassen auf isOpenShown zugreifen zu können
     public int getIsOpenShown() {
+
         return isOpenShown;
     }
 
@@ -53,7 +54,6 @@ public class StartActivity extends AppCompatActivity {
         listView.setAdapter(toDosAdapter);
 
 
-
         // Hier wird ein glickListener auf fab gesetzt(um ein neues ToDO zu erstellen)
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +70,7 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 isOpenShown = 1;
-                showToDos();
+                reloadList();
 
             }
         });
@@ -80,33 +80,32 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 isOpenShown = 0;
-                showToDos();
+                reloadList();
             }
         });
 
-//        showToDos();
+        reloadList();
 
+    }
+
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+        reloadList();
     }
 
     // Hier wird die Liste reloaded
     private void reloadList() {
+
         toDosAdapter.refreshData();
     }
 
     // Hier wird ein neues Activity gemacht
     private void addToDo(View view) {
+
         Intent intent = new Intent(this, CreateActivity.class);
         startActivity(intent);
     }
-
-    // Hier werden die ToDOs gezeigt
-    private void showToDos() {
-
-//        ToDosAdapter = new ToDosAdapter(this);
-//        listView.setAdapter(ToDosAdapter);
-
-//        reloadList();
-    }
-
 
 }

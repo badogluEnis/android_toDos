@@ -23,6 +23,7 @@ public class CreateActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
 
@@ -36,6 +37,7 @@ public class CreateActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+
                 showDatePickerDialog(v);
             }
         });
@@ -45,11 +47,13 @@ public class CreateActivity extends AppCompatActivity {
 
     //Hier Schreiben wir den Text, vom Datepicker ind das Textedit.
     public void setDate(String dateText){
+
         date.setText(dateText);
     }
 
     //Hier wird der Datepicker aufgerufen.
     public void showDatePickerDialog(View v) {
+
         DatePickerFragment newFragment = new DatePickerFragment();
         newFragment.setActivity(this);
         newFragment.show(getFragmentManager(), "Datum wählen");
@@ -57,6 +61,7 @@ public class CreateActivity extends AppCompatActivity {
 
     //Hier wird ein ToDo erstellt.
     public void createTodo(View view){
+
         // 1. Validieren der Eingaben.
         // 2. Datenbankeintrag von: Name, Desc, benachrichtigen? und Datum!!
         // 3. Wieder auf die Startactivity wechseln
@@ -80,6 +85,7 @@ public class CreateActivity extends AppCompatActivity {
             else {
 
                 if (benachrichtigung.isChecked()){
+
                     pushmessage = 1;
                 }
                 else {

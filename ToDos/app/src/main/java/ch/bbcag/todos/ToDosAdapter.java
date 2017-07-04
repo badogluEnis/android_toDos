@@ -2,6 +2,7 @@ package ch.bbcag.todos;
 
 import android.content.ClipData;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ public class ToDosAdapter extends ArrayAdapter<ToDos> {
     StartActivity context;
 
     public ToDosAdapter(Context context) {
+
         super(context, R.layout.todos_list_item);
         this.context = (StartActivity)context;
     }
@@ -28,10 +30,12 @@ public class ToDosAdapter extends ArrayAdapter<ToDos> {
     @NonNull
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
+
         final ToDos todos = getItem(position);
 
         // Hier wird gecheckt ob ein View existiert
         if (convertView == null) {
+
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.todos_list_item, parent, false);
         }
 
@@ -46,17 +50,21 @@ public class ToDosAdapter extends ArrayAdapter<ToDos> {
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 ToDosDAO.getInstance(getContext()).closeToDo(position);
                 refreshData();
             }
         });
 
-        Button deleteButton = (Button) convertView.findViewById(R.id.mark_delete);
-        deleteButton.setOnClickListener(new View.OnClickListener() {
+        Button infoButton = (Button) convertView.findViewById(R.id.mark_info);
+        infoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ToDosDAO.getInstance(getContext()).deleteToDo(position);
-                refreshData();
+
+                Intent intent = new Intent(getContext(), DetailsActivity.class);
+                int db_id = 0; //da muss die DB id mitgegeben werden
+                intent.putExtra("db_id", db_id);
+                context.startActivity(intent);
             }
         });
 
@@ -66,6 +74,7 @@ public class ToDosAdapter extends ArrayAdapter<ToDos> {
     // Hier werden die Daten refreshd
 
     public void refreshData() {
+
         clear();
         addAll(ToDosDAO.getInstance(getContext()).getToDos(context.getIsOpenShown()));
         notifyDataSetChanged();

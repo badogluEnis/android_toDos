@@ -24,6 +24,7 @@ public class ToDosDAO {
     // Hier ist das getInstance von ToDosDAO, es dient dazu, dass nur eine Instanz gemacht werden kann
 
     public static ToDosDAO getInstance(Context context) {
+
         if (instance == null) {
             instance = new ToDosDAO(context.getApplicationContext());
         }
@@ -32,12 +33,14 @@ public class ToDosDAO {
 
     // Hier wird die datenbank geschlossen
     public void close() {
+
         db.close();
     }
 
     // Hier wird ein ToDO erstellt
 
     public void createToDo(String title, String description, String date, Integer pushmessage) {
+
         ContentValues contentValues = new ContentValues();
         contentValues.put("title", title);
         contentValues.put("description", description);
@@ -49,12 +52,14 @@ public class ToDosDAO {
 
     // Hier wird ein ToDo gelösch
     public void deleteToDo(int todoId) {
+
         db.delete("ToDos", "id = " + todoId, null);
     }
 
     // Hier werden alle ToDos angezeigt
 
     public List<ToDos> getToDos(Integer isopen) {
+
         List<ToDos> todolist = new ArrayList<ToDos>();
 
         String[] tableColumns = new String[]{"id", "title", "description", "date", "pushmessage", "isopen"};
@@ -87,6 +92,7 @@ public class ToDosDAO {
 
     // Hier wird ein ToDo updated, die ID und das isopen bleiben jedoch gleich
     public void updateToDo(Integer id, String title, String description, String date, Integer pushmessage) {
+
         ContentValues contentValues = new ContentValues();
         contentValues.put("title", title);
         contentValues.put("description", description);
@@ -99,6 +105,7 @@ public class ToDosDAO {
 
     //Hier wird ein ToDo geschlossen
     public void closeToDo(Integer id) {
+
         ContentValues contenValues = new ContentValues();
         contenValues.put("isopen", 0);
         db.update("ToDos", contenValues, "id =?", new String[]{id.toString()});
@@ -106,6 +113,7 @@ public class ToDosDAO {
 
     //Hier wird ein ToDo geöffnet
     public void reopenToDo(Integer id) {
+
         ContentValues contentValues = new ContentValues();
         contentValues.put("isopen", 1);
         db.update("", contentValues, "id=?", new String[]{id.toString()});
