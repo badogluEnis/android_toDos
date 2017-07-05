@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Switch;
 
 public class DetailsActivity extends AppCompatActivity {
@@ -13,9 +14,9 @@ public class DetailsActivity extends AppCompatActivity {
     EditText date;
     EditText desc;
 
-    Button del;
-    Button edit;
-    Button done;
+    ImageButton del;
+    ImageButton edit;
+    ImageButton done;
 
     Switch push;
 
@@ -24,6 +25,10 @@ public class DetailsActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+
+        del = (ImageButton) findViewById(R.id.infoBtnDel);
+        edit = (ImageButton) findViewById(R.id.infoBtnEdit);
+        done = (ImageButton) findViewById(R.id.infoBtnDone);
 
         name.setText("test"); //aus datenbank auslesen!!
         date.setText("test"); //aus datenbank auslesen!!
