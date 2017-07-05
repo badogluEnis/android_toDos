@@ -1,5 +1,6 @@
 package ch.bbcag.todos;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +20,8 @@ public class DetailsActivity extends AppCompatActivity {
     ImageButton done;
 
     Switch push;
+
+    int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,16 +44,17 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //todo löschen
+                ToDosDAO.getInstance(getBaseContext()).deleteToDo(id);
             }
         });
 
         edit.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View v) {
+            public void onClick(View v){
 
-                //todo editieren
+                Intent intent = new Intent(this, EditActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -59,7 +63,7 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //todo als erledigt markieren
+                ToDosDAO.getInstance(getBaseContext()).closeToDo(id);
             }
         });
     }
