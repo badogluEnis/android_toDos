@@ -17,6 +17,7 @@ public class CreateActivity extends AppCompatActivity {
     EditText date;
     EditText name;
     EditText desc;
+    ImageButton createButton;
     DatePickerFragment datePicker;
     ToDosDAO dbConnection;
     Switch benachrichtigung;
