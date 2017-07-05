@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -27,7 +28,8 @@ public class CreateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
 
-        benachrichtigung = (Switch) findViewById(R.id.push) ;
+        createButton = (ImageButton) findViewById(R.id.createButton);
+        benachrichtigung = (Switch) findViewById(R.id.push);
         date = (EditText) findViewById(R.id.date);
         name = (EditText) findViewById(R.id.name);
         desc = (EditText) findViewById(R.id.description);
@@ -46,7 +48,7 @@ public class CreateActivity extends AppCompatActivity {
     }
 
     //Hier Schreiben wir den Text, vom Datepicker ind das Textedit.
-    public void setDate(String dateText){
+    public void setDate(String dateText) {
 
         date.setText(dateText);
     }
@@ -60,43 +62,34 @@ public class CreateActivity extends AppCompatActivity {
     }
 
     //Hier wird ein ToDo erstellt.
-    public void createTodo(View view){
+    public void createTodo(View view) {
 
         // 1. Validieren der Eingaben.
         // 2. Datenbankeintrag von: Name, Desc, benachrichtigen? und Datum!!
         // 3. Wieder auf die Startactivity wechseln
 
-        Pattern p = Pattern.compile("[^\\p{L}+]");
-        Matcher m = p.matcher(name.getText().toString());
-        if(m.find()){
 
-            name.setError("Bitte verwenden sie keine Zahlen.");
-        }
+        Pattern forDate = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$");
+        Matcher mForDate = forDate.matcher(date.getText().toString());
 
-        else{
+        if (mForDate.find()) {
 
-            Pattern forDate = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$");
-            Matcher mForDate = forDate.matcher(date.getText().toString());
+            date.setError("Bitte verwenden sie folgendes Format: DD.MM.JJJJ");
+        } else {
 
-            if(mForDate.find()){
+            if (benachrichtigung.isChecked()) {
 
-                date.setError("Bitte verwenden sie folgendes Format: DD.MM.JJJJ");
+                pushmessage = 1;
+            } else {
+
+                pushmessage = 0;
             }
-            else {
 
-                if (benachrichtigung.isChecked()){
+            dbConnection.getInstance(getBaseContext()).createToDo(name.getText().toString(), desc.getText().toString(), date.getText().toString(), pushmessage);
 
-                    pushmessage = 1;
-                }
-                else {
-                    pushmessage = 0;
-                }
+            Intent intent = new Intent(this, StartActivity.class);
+            startActivity(intent);
 
-                dbConnection.getInstance(getBaseContext()).createToDo(name.getText().toString(),  desc.getText().toString(), date.getText().toString(), pushmessage);
-
-                Intent intent = new Intent(this, StartActivity.class);
-                startActivity(intent);
-            }
         }
     }
 }

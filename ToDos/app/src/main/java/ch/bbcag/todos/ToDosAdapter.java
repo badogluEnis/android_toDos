@@ -5,12 +5,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -29,8 +35,8 @@ public class ToDosAdapter extends ArrayAdapter<ToDos> {
 
     @NonNull
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-
+    public View getView(final int position, View convertView, final ViewGroup parent) {
+        ListView listView = (ListView) parent.findViewById(R.id.listview);
         final ToDos todos = getItem(position);
 
         // Hier wird gecheckt ob ein View existiert
@@ -44,30 +50,15 @@ public class ToDosAdapter extends ArrayAdapter<ToDos> {
         String text = todos.getTitle() + "  " + todos.getDate();
         title_date.setText(text);
 
-
-        // Action zu Button hinzufügen
-        Button doneButton = (Button) convertView.findViewById(R.id.mark_done);
-        doneButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                ToDosDAO.getInstance(getContext()).closeToDo(position);
-                refreshData();
-            }
-        });
-
-        Button infoButton = (Button) convertView.findViewById(R.id.mark_info);
-        infoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
+        AdapterView.OnItemClickListener mListClickedHandler = new AdapterView.OnItemClickListener(){
+            public void onItemClick(AdapterView parent, View v, int position, long id) {
                 Intent intent = new Intent(getContext(), DetailsActivity.class);
-                int db_id = 0; //da muss die DB id mitgegeben werden
-                intent.putExtra("db_id", db_id);
-                context.startActivity(intent);
+                int toDoId = getItem(position).getId();
+                intent.putExtra("id", toDoId);
+                getContext().startActivity(intent);
             }
-        });
-
+        };
+        listView.setOnItemClickListener(mListClickedHandler);
         return convertView;
     }
 

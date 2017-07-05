@@ -6,12 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Switch;
 
 public class EditActivity extends AppCompatActivity {
 
-    Button save;
-    Button cancel;
+    ImageButton save;
+    ImageButton cancel;
     EditText date;
     EditText name;
     EditText desc;
@@ -25,12 +26,18 @@ public class EditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit);
 
         id_vom_TODO = 1;
-        save = (Button) findViewById(R.id.btnSave);
-        cancel = (Button) findViewById(R.id.btnCancel);
+        save = (ImageButton) findViewById(R.id.btnSave);
+        cancel = (ImageButton) findViewById(R.id.btnCancel);
         date = (EditText) findViewById(R.id.editDate);
         name = (EditText) findViewById(R.id.editName);
         desc = (EditText) findViewById(R.id.editDesc);
         benachrichtigung = (Switch) findViewById(R.id.editBenachrichtigen);
+
+        name.setText("test"); //Von DB improtieren!!
+        date.setText("test"); //Von DB improtieren!!
+        desc.setText("test"); //Von DB improtieren!!
+
+        benachrichtigung.setChecked(false); //Von DB improtieren!!
 
         //Hier wird ein Listener gesetzt, welcher Dann die Daten updated, sobald man "Specihern" Klickt.
         save.setOnClickListener(new View.OnClickListener() {
