@@ -23,6 +23,8 @@ public class DetailsActivity extends AppCompatActivity {
 
     Switch push;
 
+    int id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -51,15 +53,14 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //todo löschen
+                ToDosDAO.getInstance(getBaseContext()).deleteToDo(id);
             }
         });
 
         edit.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View v) {
-
+            public void onClick(View v){
                 Intent intent = new Intent(getApplicationContext(), EditActivity.class);
                 intent.putExtra("id", getIntent().getStringExtra("id"));
                 startActivity(intent);
@@ -72,7 +73,7 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //todo als erledigt markieren
+                ToDosDAO.getInstance(getBaseContext()).closeToDo(id);
             }
         });
     }
