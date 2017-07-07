@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 public class DetailsActivity extends AppCompatActivity {
 
+    int pushmessage;
+
     TextView name;
     TextView date;
     TextView desc;
