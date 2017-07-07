@@ -24,7 +24,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     Switch push;
 
-    int id;
+    int idTodo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class DetailsActivity extends AppCompatActivity {
         push = (Switch) findViewById(R.id.InfoPush);
         push.setClickable(false);
 
-        int idTodo = getIntent().getIntExtra("id", -1);
+        idTodo = getIntent().getIntExtra("id", -1);
         ToDos todo = ToDosDAO.getInstance(getBaseContext()).getToDoByID(idTodo);
         name.setText(todo.getTitle()); //aus datenbank auslesen!!
         date.setText(todo.getDate()); //aus datenbank auslesen!!
@@ -56,7 +56,9 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                ToDosDAO.getInstance(getBaseContext()).deleteToDo(id);
+                ToDosDAO.getInstance(getBaseContext()).deleteToDo(idTodo);
+                Intent intent = new Intent(getApplicationContext(), StartActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -65,7 +67,7 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), EditActivity.class);
-                intent.putExtra("id", getIntent().getStringExtra("id"));
+                intent.putExtra("id", idTodo);
                 startActivity(intent);
 
             }
@@ -76,7 +78,9 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                ToDosDAO.getInstance(getBaseContext()).closeToDo(id);
+                ToDosDAO.getInstance(getBaseContext()).closeToDo(idTodo);
+                Intent intent = new Intent(getApplicationContext(), StartActivity.class);
+                startActivity(intent);
             }
         });
     }
