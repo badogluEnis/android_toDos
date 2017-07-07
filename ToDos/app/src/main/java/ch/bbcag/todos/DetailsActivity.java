@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 public class DetailsActivity extends AppCompatActivity {
 
-    int pushmessage;
 
     TextView name;
     TextView date;
@@ -33,6 +32,8 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
+        ToDos todo = new ToDos();
+
         del = (ImageButton) findViewById(R.id.infoBtnDel);
         edit = (ImageButton) findViewById(R.id.infoBtnEdit);
         done = (ImageButton) findViewById(R.id.infoBtnDone);
@@ -44,11 +45,12 @@ public class DetailsActivity extends AppCompatActivity {
         push = (Switch) findViewById(R.id.InfoPush);
         push.setClickable(false);
 
-        name.setText("test"); //aus datenbank auslesen!!
-        date.setText("test"); //aus datenbank auslesen!!
-        desc.setText("test"); //aus datenbank auslesen!!
+        todo = ToDosDAO.getInstance(getBaseContext()).getToDoByID(Integer.parseInt(getIntent().getStringExtra("id")));
+        name.setText(todo.getTitle()); //aus datenbank auslesen!!
+        date.setText(todo.getDate()); //aus datenbank auslesen!!
+        desc.setText(todo.getDescription()); //aus datenbank auslesen!!
 
-        push.setChecked(false); //aus datenbank auslesen!!
+        push.setChecked(todo.isPushmessage()); //aus datenbank auslesen!!
 
         del.setOnClickListener(new View.OnClickListener() {
 
@@ -62,7 +64,7 @@ public class DetailsActivity extends AppCompatActivity {
         edit.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), EditActivity.class);
                 intent.putExtra("id", getIntent().getStringExtra("id"));
                 startActivity(intent);

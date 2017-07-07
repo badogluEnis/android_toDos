@@ -119,4 +119,20 @@ public class ToDosDAO {
         contentValues.put("isopen", 1);
         db.update("", contentValues, "id=?", new String[]{id.toString()});
     }
+
+    public ToDos getToDoByID(Integer id){
+
+        String[] tableColumns = new String[]{"id", "title", "description", "date", "pushmessage", "isopen"};
+        Cursor cursor = db.query("ToDos", tableColumns, "id" + "=?", new String[]{id.toString()}, null, null, null);
+
+        ToDos todo = new ToDos();
+
+        todo.setTitle(cursor.getString(1));
+        todo.setDescription(cursor.getString(2));
+        todo.setDate(cursor.getString(3));
+        todo.setPushmessage(cursor.getInt(4) == 0 ? false : true);
+        todo.setIsopen(cursor.getInt(5) == 0 ? false : true);
+
+        return todo;
+    }
 }

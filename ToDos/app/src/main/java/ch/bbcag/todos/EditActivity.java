@@ -16,9 +16,9 @@ public class EditActivity extends AppCompatActivity {
     EditText date;
     EditText name;
     EditText desc;
-    Switch benachrichtigung;
+    Switch push;
     int pushmessage;
-    int id_vom_TODO; //nur ein reminder!!
+    int id_vom_TODO; //nur ein reminder!
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +31,17 @@ public class EditActivity extends AppCompatActivity {
         date = (EditText) findViewById(R.id.editDate);
         name = (EditText) findViewById(R.id.editName);
         desc = (EditText) findViewById(R.id.editDesc);
-        benachrichtigung = (Switch) findViewById(R.id.editBenachrichtigen);
+        push = (Switch) findViewById(R.id.editBenachrichtigen);
 
-        name.setText("test"); //Von DB improtieren!!
-        date.setText("test"); //Von DB improtieren!!
-        desc.setText("test"); //Von DB improtieren!!
 
-        benachrichtigung.setChecked(false); //Von DB improtieren!!
+        ToDos todo = new ToDos();
+
+        todo = ToDosDAO.getInstance(getBaseContext()).getToDoByID(Integer.parseInt(getIntent().getStringExtra("id")));
+        name.setText(todo.getTitle());
+        date.setText(todo.getDate());
+        desc.setText(todo.getDescription());
+
+        push.setChecked(todo.isPushmessage());
 
         //Hier wird ein Listener gesetzt, welcher Dann die Daten updated, sobald man "Specihern" Klickt.
         save.setOnClickListener(new View.OnClickListener() {
@@ -45,10 +49,9 @@ public class EditActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (benachrichtigung.isChecked()){
+                if (push.isChecked()) {
                     pushmessage = 1;
-                }
-                else {
+                } else {
                     pushmessage = 0;
                 }
 
