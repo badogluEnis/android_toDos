@@ -45,6 +45,15 @@ public class CreateActivity extends AppCompatActivity {
             }
         });
 
+        createButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                createTodo(v);
+            }
+        });
+
 
     }
 
