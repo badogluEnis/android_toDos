@@ -11,20 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.List;
-
 
 public class ToDosAdapter extends ArrayAdapter<ToDos> {
 
-    // Hier wird das startActivity instanziert
-    //StartActivity startActvity = new StartActivity();
     StartActivity context;
 
     public ToDosAdapter(Context context) {
@@ -52,8 +43,19 @@ public class ToDosAdapter extends ArrayAdapter<ToDos> {
 
         AdapterView.OnItemClickListener mListClickedHandler = new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView parent, View v, int position, long id) {
-                Intent intent = new Intent(getContext(), DetailsActivity.class);
+
                 int toDoId = getItem(position).getId();
+
+
+                Intent intent;
+                if (getItem(position).isopen()) {
+
+                    intent = new Intent(getContext(), DetailsActivity.class);
+                }
+                else{
+                    intent = new Intent(getContext(), DetailsActivityClosed.class);
+                }
+
                 intent.putExtra("id", toDoId);
                 getContext().startActivity(intent);
             }

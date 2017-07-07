@@ -8,8 +8,7 @@ import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
-public class DetailsActivity extends AppCompatActivity {
-
+public class DetailsActivityClosed extends AppCompatActivity {
 
     TextView name;
     TextView date;
@@ -21,13 +20,13 @@ public class DetailsActivity extends AppCompatActivity {
 
     Switch push;
 
-    int idTodo;
+    int id;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details);
+        setContentView(R.layout.activity_details_closed);
 
         del = (ImageButton) findViewById(R.id.infoBtnDel);
         edit = (ImageButton) findViewById(R.id.infoBtnEdit);
@@ -40,42 +39,20 @@ public class DetailsActivity extends AppCompatActivity {
         push = (Switch) findViewById(R.id.InfoPush);
         push.setClickable(false);
 
-        idTodo = getIntent().getIntExtra("id", -1);
+        int idTodo = getIntent().getIntExtra("id", -1);
         ToDos todo = ToDosDAO.getInstance(getBaseContext()).getToDoByID(idTodo);
-        name.setText(todo.getTitle()); //aus datenbank auslesen!!
-        date.setText(todo.getDate()); //aus datenbank auslesen!!
-        desc.setText(todo.getDescription()); //aus datenbank auslesen!!
+        name.setText(todo.getTitle());
+        date.setText(todo.getDate());
+        desc.setText(todo.getDescription());
 
-        push.setChecked(todo.isPushmessage()); //aus datenbank auslesen!!
+        push.setChecked(todo.isPushmessage());
 
         del.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-                ToDosDAO.getInstance(getBaseContext()).deleteToDo(idTodo);
-                Intent intent = new Intent(getApplicationContext(), StartActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        edit.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), EditActivity.class);
-                intent.putExtra("id", idTodo);
-                startActivity(intent);
-
-            }
-        });
-
-        done.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                ToDosDAO.getInstance(getBaseContext()).closeToDo(idTodo);
+                ToDosDAO.getInstance(getBaseContext()).deleteToDo(id);
                 Intent intent = new Intent(getApplicationContext(), StartActivity.class);
                 startActivity(intent);
             }
