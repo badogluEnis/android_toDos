@@ -32,8 +32,6 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        ToDos todo = new ToDos();
-
         del = (ImageButton) findViewById(R.id.infoBtnDel);
         edit = (ImageButton) findViewById(R.id.infoBtnEdit);
         done = (ImageButton) findViewById(R.id.infoBtnDone);
@@ -45,7 +43,8 @@ public class DetailsActivity extends AppCompatActivity {
         push = (Switch) findViewById(R.id.InfoPush);
         push.setClickable(false);
 
-        todo = ToDosDAO.getInstance(getBaseContext()).getToDoByID(Integer.parseInt(getIntent().getStringExtra("id")));
+        int idTodo = getIntent().getIntExtra("id", -1);
+        ToDos todo = ToDosDAO.getInstance(getBaseContext()).getToDoByID(idTodo);
         name.setText(todo.getTitle()); //aus datenbank auslesen!!
         date.setText(todo.getDate()); //aus datenbank auslesen!!
         desc.setText(todo.getDescription()); //aus datenbank auslesen!!

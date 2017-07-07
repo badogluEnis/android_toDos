@@ -39,7 +39,7 @@ public class ToDosDAO {
 
     // Hier wird ein ToDO erstellt
 
-    public void createToDo(String title, String description, String date, Integer pushmessage) {
+    public void createToDo(String title, String description, String date, int pushmessage) {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put("title", title);
@@ -64,7 +64,7 @@ public class ToDosDAO {
         List<ToDos> todolist = new ArrayList<ToDos>();
 
         String[] tableColumns = new String[]{"id", "title", "description", "date", "pushmessage", "isopen"};
-        String sortOrder = String.format("%s ASC, %s ASC", "date", "title");
+        String sortOrder = "date ASC, title ASC";
 
         // Um nicht zwei querys zu schreiben wird muss isopen mitgegeben werden was dann hier bei isopen =? aussortiert wird
         Cursor cursor = db.query("ToDos", tableColumns, "isopen" + "=?", new String[]{isopen.toString()}, null, null, sortOrder);
@@ -75,7 +75,7 @@ public class ToDosDAO {
         while (!cursor.isAfterLast()) {
             ToDos todo = new ToDos();
 
-
+            todo.setId(cursor.getInt(0));
             todo.setTitle(cursor.getString(1));
             todo.setDescription(cursor.getString(2));
             todo.setDate(cursor.getString(3));
@@ -120,13 +120,24 @@ public class ToDosDAO {
         db.update("", contentValues, "id=?", new String[]{id.toString()});
     }
 
-    public ToDos getToDoByID(Integer id){
-
+    public ToDos getToDoByID(int id){
         String[] tableColumns = new String[]{"id", "title", "description", "date", "pushmessage", "isopen"};
-        Cursor cursor = db.query("ToDos", tableColumns, "id" + "=?", new String[]{id.toString()}, null, null, null);
+        String selection = "id = ?";
+        String[] selectionArgs = new String[]{String.valueOf(id)};
+        Cursor cursor = db.query(
+                "ToDos",
+                tableColumns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+
+        cursor.moveToFirst();
 
         ToDos todo = new ToDos();
-
+        todo.setId(id);
         todo.setTitle(cursor.getString(1));
         todo.setDescription(cursor.getString(2));
         todo.setDate(cursor.getString(3));
