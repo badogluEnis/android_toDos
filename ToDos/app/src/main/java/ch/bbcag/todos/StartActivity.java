@@ -59,6 +59,9 @@ public class StartActivity extends AppCompatActivity {
         toDosAdapter.addAll(ToDosDAO.getInstance(this).getToDos(1));
         listView.setAdapter(toDosAdapter);
 
+        close.setBackgroundColor(0x00000000);
+        open.setBackgroundDrawable(defaultbutton);
+
 
         // Hier wird ein glickListener auf fab gesetzt(um ein neues ToDO zu erstellen)
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

@@ -26,7 +26,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="23dp"
         android:ems="10"
-        android:hint="Titiel"
+        android:hint="Titel"
         android:inputType="textPersonName"
         app:layout_constraintHorizontal_bias="0.165"
         app:layout_constraintLeft_toLeftOf="parent"

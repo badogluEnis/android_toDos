@@ -122,6 +122,7 @@ public class ToDosDAO {
 
     public ToDos getToDoByID(int id){
         String[] tableColumns = new String[]{"id", "title", "description", "date", "pushmessage", "isopen"};
+
         String selection = "id = ?";
         String[] selectionArgs = new String[]{String.valueOf(id)};
         Cursor cursor = db.query(
@@ -133,6 +134,7 @@ public class ToDosDAO {
                 null,
                 null
         );
+
 
         cursor.moveToFirst();
 
