@@ -71,7 +71,14 @@ public class EditActivity extends AppCompatActivity {
 
         });
 
-        ToDosDAO.getInstance(getBaseContext()).getToDos(1);
+
+
+
+
+
+
+
+
 
     }
 

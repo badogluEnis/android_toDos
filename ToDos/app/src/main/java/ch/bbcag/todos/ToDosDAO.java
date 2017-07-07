@@ -123,7 +123,8 @@ public class ToDosDAO {
     public ToDos getToDoByID(Integer id){
 
         String[] tableColumns = new String[]{"id", "title", "description", "date", "pushmessage", "isopen"};
-        Cursor cursor = db.query("ToDos", tableColumns, "id" + "=?", new String[]{id.toString()}, null, null, null);
+        Cursor cursor = db.query("" +
+                ".ToDos", tableColumns, "id" + "=?", new String[]{id.toString()}, null, null, null);
 
         ToDos todo = new ToDos();
 
