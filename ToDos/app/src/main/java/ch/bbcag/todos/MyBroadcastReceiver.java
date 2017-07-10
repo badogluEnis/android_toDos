@@ -5,7 +5,6 @@ import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Vibrator;
 
 /**
  * Created by bbadoe on 10.07.2017.
@@ -20,14 +19,11 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 
         Notification notification = new Notification.Builder(context)
                 .setContentTitle(intent.getStringExtra("TITLE") + "ist fällig")
-                .setContentText("Ihr ToDo läuft in einem Tag ab!")
+                .setContentText("Ihr ToDo läuft ab!")
+                .setSmallIcon(R.drawable.ic_today_black_18dp)
                 .build();
 
         nm.notify(intent.getIntExtra("id", -1) , notification);
-
-        // Vibrate the mobile phone
-        Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.vibrate(2000);
     }
 
 }
