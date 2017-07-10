@@ -42,19 +42,28 @@ public class ToDosDAO {
     public void createToDo(String title, String description, String date, int pushmessage) {
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put("title", title);
-        contentValues.put("description", description);
-        contentValues.put("date", date);
-        contentValues.put("pushmessage", pushmessage);
-        contentValues.put("isopen", 1);
+        contentValues.put(ToDosEntry.TODOS_TITLE, title);
+        contentValues.put(ToDosEntry.TODOS_DESCRIPTION, description);
+        contentValues.put(ToDosEntry.TODOS_DATE, date);
+        contentValues.put(ToDosEntry.TODOS_PUSHMESSAGE, pushmessage);
+        contentValues.put(ToDosEntry.TODOS_ISOPEN, 1);
 
-        db.insert("ToDos", null, contentValues);
+        db.insert(
+                ToDosEntry.TABLE_TODOS,
+                null,
+                contentValues
+        );
     }
 
     // Hier wird ein ToDo gelösch
     public void deleteToDo(int todoId) {
 
-        db.delete("ToDos", "id = " + todoId, null);
+        String selection = ToDosEntry.TODOS_ID + " = " + todoId ;
+        db.delete(
+                ToDosEntry.TABLE_TODOS,
+                selection,
+                null
+        );
     }
 
     // Hier werden alle ToDos angezeigt
@@ -63,11 +72,23 @@ public class ToDosDAO {
 
         List<ToDos> todolist = new ArrayList<ToDos>();
 
-        String[] tableColumns = new String[]{"id", "title", "description", "date", "pushmessage", "isopen"};
-        String sortOrder = "date ASC, title ASC";
+        String[] tableColumns = new String[]{ToDosEntry.TODOS_ID, ToDosEntry.TODOS_TITLE, ToDosEntry.TODOS_DESCRIPTION, ToDosEntry.TODOS_DATE, ToDosEntry.TODOS_PUSHMESSAGE, ToDosEntry.TODOS_ISOPEN};
+        String selection = ToDosEntry.TODOS_ISOPEN + " =? ";
+        String[] selectionargs = new String[] {String.valueOf(isopen)};
+        String sortOrder = ToDosEntry.TODOS_DATE + " ASC, " + ToDosEntry.TODOS_TITLE + " ASC";
+
+
 
         // Um nicht zwei querys zu schreiben wird muss isopen mitgegeben werden was dann hier bei isopen =? aussortiert wird
-        Cursor cursor = db.query("ToDos", tableColumns, "isopen" + "=?", new String[]{isopen.toString()}, null, null, sortOrder);
+        Cursor cursor = db.query(
+                ToDosEntry.TABLE_TODOS,
+                tableColumns,
+                selection,
+                selectionargs,
+                null,
+                null,
+                sortOrder
+        );
 
         cursor.moveToFirst();
 
@@ -95,12 +116,20 @@ public class ToDosDAO {
     public void updateToDo(Integer id, String title, String description, String date, Integer pushmessage) {
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put("title", title);
-        contentValues.put("description", description);
-        contentValues.put("date", date);
-        contentValues.put("pushmessage", pushmessage);
+        contentValues.put(ToDosEntry.TODOS_TITLE, title);
+        contentValues.put(ToDosEntry.TODOS_DESCRIPTION, description);
+        contentValues.put(ToDosEntry.TODOS_DATE, date);
+        contentValues.put(ToDosEntry.TODOS_PUSHMESSAGE, pushmessage);
 
-        db.update("ToDos", contentValues, "id =?", new String[]{id.toString()});
+        String selection = ToDosEntry.TODOS_ID + " =? ";
+        String[] selectionargs = new String[] {String.valueOf(id)};
+
+        db.update(
+                ToDosEntry.TABLE_TODOS,
+                contentValues,
+                selection,
+                selectionargs
+        );
 
     }
 
@@ -108,8 +137,15 @@ public class ToDosDAO {
     public void closeToDo(Integer id) {
 
         ContentValues contenValues = new ContentValues();
-        contenValues.put("isopen", 0);
-        db.update("ToDos", contenValues, "id =?", new String[]{id.toString()});
+        contenValues.put(ToDosEntry.TODOS_ISOPEN, 0);
+        String selection = ToDosEntry.TODOS_ID + " = ?";
+        String[] selectionargs = new String[] {String.valueOf(id)};
+        db.update(
+                ToDosEntry.TABLE_TODOS,
+                contenValues,
+                selection,
+                selectionargs
+        );
     }
 
     //Hier wird ein ToDo geöffnet
@@ -117,16 +153,23 @@ public class ToDosDAO {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put("isopen", 1);
-        db.update("", contentValues, "id=?", new String[]{id.toString()});
+        String selection = ToDosEntry.TODOS_ID + " =?";
+        String[] selectionArgs = new String[] {String.valueOf(id)};
+        db.update(
+                ToDosEntry.TABLE_TODOS,
+                contentValues,
+                selection,
+                selectionArgs
+        );
     }
 
     public ToDos getToDoByID(int id){
-        String[] tableColumns = new String[]{"id", "title", "description", "date", "pushmessage", "isopen"};
+        String[] tableColumns = new String[]{ToDosEntry.TODOS_ID, ToDosEntry.TODOS_TITLE, ToDosEntry.TODOS_DESCRIPTION, ToDosEntry.TODOS_DATE, ToDosEntry.TODOS_PUSHMESSAGE, ToDosEntry.TODOS_ISOPEN};
 
-        String selection = "id = ?";
+        String selection = ToDosEntry.TODOS_ID + " =?";
         String[] selectionArgs = new String[]{String.valueOf(id)};
         Cursor cursor = db.query(
-                "ToDos",
+                ToDosEntry.TABLE_TODOS,
                 tableColumns,
                 selection,
                 selectionArgs,
