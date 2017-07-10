@@ -3,6 +3,7 @@ package ch.bbcag.todos;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Switch;
@@ -20,8 +21,7 @@ public class DetailsActivityClosed extends AppCompatActivity {
 
     Switch push;
 
-    int id;
-
+    int idTodo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,10 @@ public class DetailsActivityClosed extends AppCompatActivity {
         push = (Switch) findViewById(R.id.InfoPush);
         push.setClickable(false);
 
-        int idTodo = getIntent().getIntExtra("id", -1);
+        idTodo = getIntent().getIntExtra("id", -1);
+        if (idTodo == -1){
+            //error anzeigen!!
+        }
         ToDos todo = ToDosDAO.getInstance(getBaseContext()).getToDoByID(idTodo);
         name.setText(todo.getTitle());
         date.setText(todo.getDate());
@@ -52,7 +55,7 @@ public class DetailsActivityClosed extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                ToDosDAO.getInstance(getBaseContext()).deleteToDo(id);
+                ToDosDAO.getInstance(getBaseContext()).deleteToDo(getIntent().getIntExtra("id", -1));
                 Intent intent = new Intent(getApplicationContext(), StartActivity.class);
                 startActivity(intent);
             }

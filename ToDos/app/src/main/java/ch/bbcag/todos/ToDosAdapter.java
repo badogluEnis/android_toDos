@@ -1,11 +1,8 @@
 package ch.bbcag.todos;
 
-import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Paint;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +61,7 @@ public class ToDosAdapter extends ArrayAdapter<ToDos> {
         return convertView;
     }
 
-    // Hier werden die Daten refreshd
+    // Hier werden die Daten refreshed
 
     public void refreshData() {
 

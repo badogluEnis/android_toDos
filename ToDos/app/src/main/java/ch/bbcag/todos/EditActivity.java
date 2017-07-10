@@ -18,14 +18,17 @@ public class EditActivity extends AppCompatActivity {
     EditText desc;
     Switch push;
     int pushmessage;
-    int id_vom_TODO; //nur ein reminder!
+    int idTodo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
-        id_vom_TODO = 1;
+        idTodo = getIntent().getIntExtra("id", -1);
+        if (idTodo == -1){
+            //error anzeigen!!
+        }
         save = (ImageButton) findViewById(R.id.btnSave);
         cancel = (ImageButton) findViewById(R.id.btnCancel);
         date = (EditText) findViewById(R.id.editDate);
@@ -34,7 +37,7 @@ public class EditActivity extends AppCompatActivity {
         push = (Switch) findViewById(R.id.editBenachrichtigen);
 
 
-        ToDos todo = new ToDos();
+        ToDos todo;
 
         todo = ToDosDAO.getInstance(getBaseContext()).getToDoByID(Integer.parseInt(getIntent().getStringExtra("id")));
         name.setText(todo.getTitle());
@@ -56,7 +59,7 @@ public class EditActivity extends AppCompatActivity {
                 }
 
                 //Update der Datensätze
-                ToDosDAO.getInstance(getBaseContext()).updateToDo(id_vom_TODO, name.getText().toString(), desc.getText().toString(), date.getText().toString(), pushmessage);
+                ToDosDAO.getInstance(getBaseContext()).updateToDo(idTodo, name.getText().toString(), desc.getText().toString(), date.getText().toString(), pushmessage);
 
             }
         });

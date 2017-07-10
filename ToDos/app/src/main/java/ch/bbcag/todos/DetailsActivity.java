@@ -41,7 +41,11 @@ public class DetailsActivity extends AppCompatActivity {
         push.setClickable(false);
 
         idTodo = getIntent().getIntExtra("id", -1);
+        if (idTodo == -1){
+            //error anzeigen!!
+        }
         ToDos todo = ToDosDAO.getInstance(getBaseContext()).getToDoByID(idTodo);
+
         name.setText(todo.getTitle()); //aus datenbank auslesen!!
         date.setText(todo.getDate()); //aus datenbank auslesen!!
         desc.setText(todo.getDescription()); //aus datenbank auslesen!!
@@ -63,6 +67,7 @@ public class DetailsActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(getApplicationContext(), EditActivity.class);
                 intent.putExtra("id", idTodo);
                 startActivity(intent);
