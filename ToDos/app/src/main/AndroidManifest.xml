@@ -23,6 +23,9 @@
         <activity android:name=".DetailsActivity" />
         <activity android:name=".EditActivity" />
         <activity android:name=".DetailsActivityClosed"></activity>
+        <receiver
+            android:name=".MyBroadcastReceiver" >
+        </receiver>
     </application>
 
 </manifest>

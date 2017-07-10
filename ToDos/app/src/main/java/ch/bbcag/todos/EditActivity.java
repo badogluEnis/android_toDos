@@ -20,6 +20,7 @@ public class EditActivity extends AppCompatActivity {
     EditText desc;
     Switch push;
     int pushmessage;
+    int pushmeggaseOld;
     int idTodo;
 
     @Override
@@ -59,6 +60,13 @@ public class EditActivity extends AppCompatActivity {
 
         push.setChecked(todo.isPushmessage());
 
+        if (todo.isPushmessage()){
+            pushmeggaseOld = 1;
+        }
+        else{
+            pushmeggaseOld = 0;
+        }
+
         //Hier wird ein Listener gesetzt, welcher Dann die Daten updated, sobald man "Specihern" Klickt.
         save.setOnClickListener(new View.OnClickListener() {
 
@@ -70,6 +78,19 @@ public class EditActivity extends AppCompatActivity {
                 } else {
                     pushmessage = 0;
                 }
+
+                if (pushmeggaseOld != pushmessage){
+
+                    if (pushmessage == 1){ //eine Push message erstellen
+
+                        //HIER CODE EINFÜGEN!!
+                    }
+                    else{ //die Push message löschen
+
+                        //HIER CODE EINFÜGEN!!
+                    }
+                }
+
 
                 //Update der Datensätze
                 ToDosDAO.getInstance(getBaseContext()).updateToDo(idTodo, name.getText().toString(), desc.getText().toString(), date.getText().toString(), pushmessage);

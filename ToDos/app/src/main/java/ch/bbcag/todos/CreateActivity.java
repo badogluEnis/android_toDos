@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -54,7 +55,6 @@ public class CreateActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     //Hier Schreiben wir den Text, vom Datepicker ind das Textedit.
@@ -96,6 +96,8 @@ public class CreateActivity extends AppCompatActivity {
             }
 
             dbConnection.getInstance(getBaseContext()).createToDo(name.getText().toString(), desc.getText().toString(), date.getText().toString(), pushmessage);
+
+
 
             Intent intent = new Intent(this, StartActivity.class);
             startActivity(intent);
