@@ -1,5 +1,7 @@
 package ch.bbcag.todos;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -41,7 +43,18 @@ public class DetailsActivityClosed extends AppCompatActivity {
 
         idTodo = getIntent().getIntExtra("id", -1);
         if (idTodo == -1){
+
             //error anzeigen!!
+            AlertDialog alertDialog = new AlertDialog.Builder(DetailsActivityClosed.this).create();
+            alertDialog.setTitle("Fehler");
+            alertDialog.setMessage("Ups ein Fehler ist aufgetreten, starten Sie die App neu");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
         }
         ToDos todo = ToDosDAO.getInstance(getBaseContext()).getToDoByID(idTodo);
         name.setText(todo.getTitle());
