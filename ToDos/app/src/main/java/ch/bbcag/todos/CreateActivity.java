@@ -97,7 +97,7 @@ public class CreateActivity extends AppCompatActivity {
 
             dbConnection.getInstance(getBaseContext()).createToDo(name.getText().toString(), desc.getText().toString(), date.getText().toString(), pushmessage);
 
-
+            AlarmHelper.setAlarm(getApplicationContext(), getIntent().getIntExtra("id", -1), date.getText().toString(), name.getText().toString());
 
             Intent intent = new Intent(this, StartActivity.class);
             startActivity(intent);
