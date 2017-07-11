@@ -1,12 +1,9 @@
 package ch.bbcag.todos;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Switch;
@@ -28,11 +25,6 @@ public class EditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
-        idTodo = getIntent().getIntExtra("id", -1);
-        if (idTodo == -1){
-
-            ErrorAlert.showError(this);
-        }
         save = (ImageButton) findViewById(R.id.btnSave);
         cancel = (ImageButton) findViewById(R.id.btnCancel);
         date = (EditText) findViewById(R.id.editDate);
@@ -40,10 +32,15 @@ public class EditActivity extends AppCompatActivity {
         desc = (EditText) findViewById(R.id.editDesc);
         push = (Switch) findViewById(R.id.editBenachrichtigen);
 
+        idTodo = getIntent().getIntExtra("id", -1);
+        if (idTodo == -1){
+
+            ErrorAlert.showError(this);
+        }
 
         ToDos todo;
+        todo = ToDosDAO.getInstance(getBaseContext()).getToDoByID(getIntent().getIntExtra("id", -1));
 
-        todo = ToDosDAO.getInstance(getBaseContext()).getToDoByID(Integer.parseInt(getIntent().getStringExtra("id")));
         name.setText(todo.getTitle());
         date.setText(todo.getDate());
         desc.setText(todo.getDescription());
@@ -84,6 +81,8 @@ public class EditActivity extends AppCompatActivity {
 
                 //Update der Datensätze
                 ToDosDAO.getInstance(getBaseContext()).updateToDo(idTodo, name.getText().toString(), desc.getText().toString(), date.getText().toString(), pushmessage);
+                Intent intent = new Intent(getApplicationContext(), StartActivity.class);
+                startActivity(intent);
 
             }
         });
