@@ -55,7 +55,7 @@ public class ToDosDAO {
         );
     }
 
-    // Hier wird ein ToDo gelösch
+    // Hier wird ein ToDo gelöscht
     public void deleteToDo(int todoId) {
 
         String selection = ToDosEntry.TODOS_ID + " = " + todoId ;

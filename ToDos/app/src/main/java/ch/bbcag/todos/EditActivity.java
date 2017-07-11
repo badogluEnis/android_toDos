@@ -83,11 +83,11 @@ public class EditActivity extends AppCompatActivity {
 
                     if (pushmessage == 1){ //eine Push message erstellen
 
-                        //HIER CODE EINFÜGEN!!
+                        AlarmHelper.setAlarm(getApplicationContext(), getIntent().getIntExtra("id", -1), date.getText().toString(), name.getText().toString());
                     }
                     else{ //die Push message löschen
 
-                        //HIER CODE EINFÜGEN!!
+                        AlarmHelper.cancelAlarm(getApplicationContext(), getIntent().getIntExtra("id", -1));
                     }
                 }
 

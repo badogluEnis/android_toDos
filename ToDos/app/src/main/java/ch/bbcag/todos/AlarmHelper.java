@@ -39,5 +39,13 @@ public class AlarmHelper  {
         Toast.makeText(context, "Benachrichtigung für " + title + " wurde erstellt.", Toast.LENGTH_LONG).show();
     }
 
+    public static void cancelAlarm(Context context, int id){
+
+        Intent intent = new Intent(context, MyBroadcastReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
+        alarmManager.cancel(pendingIntent);
+    }
+
 }
 
