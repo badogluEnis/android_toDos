@@ -40,18 +40,7 @@
     <favorites_list name="app" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DetailsActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ch/bbcag/todos/DetailsActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="46" column="12" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="GradleLocalSettings">
     <option name="myGradleHomes">
@@ -1916,17 +1905,18 @@
         <option value="$PROJECT_DIR$/src/main/java/ch/bbcag/todos/ToDosEntry.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/bbcag/todos/ToDosHelper.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/bbcag/todos/StartActvity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ch/bbcag/todos/CreateActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/bbcag/todos/ToDosAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_start_actvity.xml" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/activity_details.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/todos_list_item.xml" />
         <option value="$PROJECT_DIR$/src/main/java/ch/bbcag/todos/ToDos.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ch/bbcag/todos/EditActivity.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_create.xml" />
         <option value="$PROJECT_DIR$/src/main/java/ch/bbcag/todos/ToDosDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/bbcag/todos/StartActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/bbcag/todos/DetailsActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch/bbcag/todos/EditActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch/bbcag/todos/CreateActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_details_closed.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_details.xml" />
       </list>
     </option>
   </component>
@@ -1961,6 +1951,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -1977,6 +1969,28 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ToDos" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2011,11 +2025,19 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ToDos" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="ProjectPane" />
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -2362,7 +2384,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32893288" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3278328" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2370,20 +2392,20 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281075" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32893288" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32893288" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32893288" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32893288" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32893288" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15245202" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15245202" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39933994" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39933994" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -2413,13 +2435,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-25/android/widget/ListView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="469" column="16" selection-start-line="469" selection-start-column="16" selection-end-line="469" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/bbcag/todos/CreateActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="782">
@@ -2587,17 +2602,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_details.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="952">
-          <caret line="56" column="4" selection-start-line="56" selection-start-column="4" selection-end-line="56" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_start_actvity.xml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="1037">
@@ -2650,22 +2654,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/bbcag/todos/CreateActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="68" column="50" selection-start-line="68" selection-start-column="50" selection-end-line="68" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/bbcag/todos/EditActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="52" column="36" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/mipmap-hdpi/ic_launcher_round.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -2680,9 +2668,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
           <caret line="215" column="0" selection-start-line="215" selection-start-column="0" selection-end-line="215" selection-end-column="0" />
-          <folding>
-            <element signature="e#8144#8145#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2690,7 +2675,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="181">
           <caret line="282" column="0" selection-start-line="282" selection-start-column="0" selection-end-line="282" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2698,11 +2682,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
           <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
-          <folding>
-            <element signature="e#3056#3057#0" expanded="true" />
-            <element signature="e#3108#3109#0" expanded="true" />
-            <element signature="e#3604#3605#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2710,7 +2689,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
           <caret line="126" column="0" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2726,7 +2704,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
           <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2734,9 +2711,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
           <caret line="22427" column="27" selection-start-line="22427" selection-start-column="27" selection-end-line="22427" selection-end-column="27" />
-          <folding>
-            <element signature="e#880484#880485#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2744,10 +2718,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
           <caret line="92" column="46" selection-start-line="92" selection-start-column="46" selection-end-line="92" selection-end-column="46" />
-          <folding>
-            <element signature="e#30052#30053#0" expanded="true" />
-            <element signature="e#30090#30091#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2755,7 +2725,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="359">
           <caret line="166" column="0" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2791,12 +2760,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/bbcag/todos/EditActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="617">
+          <caret line="90" column="52" selection-start-line="90" selection-start-column="52" selection-end-line="90" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/bbcag/todos/CreateActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="96" column="19" selection-start-line="96" selection-start-column="19" selection-end-line="96" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/bbcag/todos/DetailsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
+        <state relative-caret-position="175">
           <caret line="46" column="12" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="12" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_details_closed.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_details.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="1003">
+          <caret line="59" column="4" selection-start-line="59" selection-start-column="4" selection-end-line="59" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
   </component>

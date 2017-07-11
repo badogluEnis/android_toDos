@@ -87,9 +87,9 @@ public class EditActivity extends AppCompatActivity {
 
                 }
 
-                if (desc.getText().length() >= 100) {
+                if (desc.getText().length() >= 150) {
 
-                    desc.setError("Nicht mehr als 100 Zeichen verwenden");
+                    desc.setError("Nicht mehr als 150 Zeichen verwenden");
                     return;
                 }
 

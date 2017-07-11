@@ -80,10 +80,6 @@ public class CreateActivity extends AppCompatActivity {
         // 2. Datenbankeintrag von: Name, Desc, benachrichtigen? und Datum!!
         // 3. Wieder auf die Startactivity wechseln
 
-
-        Pattern forDate = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$");
-        Matcher mForDate = forDate.matcher(date.getText().toString());
-
         if (name.getText().toString().length() >= 20) {
 
             name.setError("Nicht mehr als 20 Zeichen verwenden");
@@ -96,17 +92,9 @@ public class CreateActivity extends AppCompatActivity {
             return;
         }
 
+        if (desc.getText().length() >= 150) {
 
-        if (mForDate.find()) {
-
-            date.setError("Bitte verwenden sie folgendes Format: DD.MM.JJJJ");
-            return;
-
-        }
-
-        if (desc.getText().length() >= 100) {
-
-            desc.setError("Nicht mehr als 100 Zeichen verwenden");
+            desc.setError("Nicht mehr als 150 Zeichen verwenden");
             return;
         }
 
