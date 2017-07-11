@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.regex.Matcher;
@@ -23,11 +24,14 @@ public class EditActivity extends AppCompatActivity {
     int pushmessage;
     int pushmeggaseOld;
     int idTodo;
+    CreateActivity createActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
+
+        createActivity = new CreateActivity();
 
         save = (ImageButton) findViewById(R.id.btnSave);
         cancel = (ImageButton) findViewById(R.id.btnCancel);
@@ -56,6 +60,15 @@ public class EditActivity extends AppCompatActivity {
         } else {
             pushmeggaseOld = 0;
         }
+
+        date.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                createActivity.showDatePickerDialog(v);
+            }
+        });
 
         //Hier wird ein Listener gesetzt, welcher Dann die Daten updated, sobald man "Specihern" Klickt.
         save.setOnClickListener(new View.OnClickListener() {
@@ -134,6 +147,7 @@ public class EditActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), StartActivity.class);
                 startActivity(intent);
+
             }
 
         });
