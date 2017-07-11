@@ -14,6 +14,7 @@ public class ErrorAlert {
 
         //error anzeigen!!
         AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        alertDialog.setCancelable(false);
         alertDialog.setTitle("Lade-Fehler");
         alertDialog.setMessage("Ups, es ein Fehler im System aufgetreten, bitte starten Sie die App neu");
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",

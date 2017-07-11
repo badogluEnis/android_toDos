@@ -44,17 +44,7 @@ public class DetailsActivityClosed extends AppCompatActivity {
         idTodo = getIntent().getIntExtra("id", -1);
         if (idTodo == -1){
 
-            //error anzeigen!!
-            AlertDialog alertDialog = new AlertDialog.Builder(DetailsActivityClosed.this).create();
-            alertDialog.setTitle("Fehler");
-            alertDialog.setMessage("Ups ein Fehler ist aufgetreten, starten Sie die App neu");
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-            alertDialog.show();
+           ErrorAlert.showError(this);
         }
         ToDos todo = ToDosDAO.getInstance(getBaseContext()).getToDoByID(idTodo);
         name.setText(todo.getTitle());
