@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -120,6 +121,7 @@ public class EditActivity extends AppCompatActivity {
                     //Update der Datensätze
                     ToDosDAO.getInstance(getBaseContext()).updateToDo(idTodo, name.getText().toString(), desc.getText().toString(), date.getText().toString(), pushmessage);
                     Intent intent = new Intent(getApplicationContext(), StartActivity.class);
+                    Toast.makeText(getApplicationContext(), "Todo " + name.getText().toString() + " wurde geupdated", Toast.LENGTH_LONG).show();
                     startActivity(intent);
                 }
 

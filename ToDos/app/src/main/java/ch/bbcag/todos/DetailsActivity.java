@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DetailsActivity extends AppCompatActivity {
 
@@ -24,6 +25,7 @@ public class DetailsActivity extends AppCompatActivity {
     Switch push;
 
     int idTodo;
+    String title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +62,10 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                title = name.getText().toString();
                 ToDosDAO.getInstance(getBaseContext()).deleteToDo(idTodo);
                 Intent intent = new Intent(getApplicationContext(), StartActivity.class);
+                Toast.makeText(getApplicationContext(), "Todo Namens " + title + " wurde gelöscht", Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         });
@@ -71,8 +75,10 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                title = name.getText().toString();
                 Intent intent = new Intent(getApplicationContext(), EditActivity.class);
                 intent.putExtra("id", idTodo);
+                Toast.makeText(getApplicationContext(), "Todo Namens " + title + " wird nun editiert", Toast.LENGTH_LONG).show();
                 startActivity(intent);
 
             }
@@ -83,8 +89,10 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                title = name.getText().toString();
                 ToDosDAO.getInstance(getBaseContext()).closeToDo(idTodo);
                 Intent intent = new Intent(getApplicationContext(), StartActivity.class);
+                Toast.makeText(getApplicationContext(), "Todo Namens " + title + " wurde als erledigt markiert", Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         });

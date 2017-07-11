@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.regex.Matcher;
@@ -131,6 +132,11 @@ public class CreateActivity extends AppCompatActivity {
 
                 AlarmHelper.setAlarm(getApplicationContext(), getIntent().getIntExtra("id", -1), date.getText().toString(), name.getText().toString());
             }
+            else{
+
+                Toast.makeText(getApplicationContext(), "Todo " + name.getText().toString() + " wurde ohne Benachrichtigung erstellt", Toast.LENGTH_LONG).show();
+            }
+
             Intent intent = new Intent(this, StartActivity.class);
             startActivity(intent);
 
