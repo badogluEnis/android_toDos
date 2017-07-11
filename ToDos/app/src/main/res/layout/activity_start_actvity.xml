@@ -20,7 +20,8 @@
         app:popupTheme="@style/AppTheme.PopupOverlay"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginTop="-12dp" />
 
 
     <include

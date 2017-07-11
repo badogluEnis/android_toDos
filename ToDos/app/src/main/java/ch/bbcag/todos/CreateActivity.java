@@ -37,6 +37,7 @@ public class CreateActivity extends AppCompatActivity {
         desc = (EditText) findViewById(R.id.description);
         datePicker = new DatePickerFragment();
 
+
         date.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -82,9 +83,38 @@ public class CreateActivity extends AppCompatActivity {
         Pattern forDate = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$");
         Matcher mForDate = forDate.matcher(date.getText().toString());
 
+        if (name.getText().toString().length() >= 20) {
+
+            name.setError("Nicht mehr als 20 Zeichen verwenden");
+            return;
+        }
+
+        if (name.getText().toString().matches("")) {
+
+            name.setError("Der Titel darf nicht leer sein");
+            return;
+        }
+
+
         if (mForDate.find()) {
 
             date.setError("Bitte verwenden sie folgendes Format: DD.MM.JJJJ");
+            return;
+
+        }
+
+        if (desc.getText().length() >= 100) {
+
+            desc.setError("Nicht mehr als 100 Zeichen verwenden");
+            return;
+        }
+
+        if (desc.getText().toString().matches("")) {
+
+            desc.setError("Die Beschreibung darf nicht leer sein");
+            return;
+
+
         } else {
 
             if (benachrichtigung.isChecked()) {
@@ -97,7 +127,7 @@ public class CreateActivity extends AppCompatActivity {
 
             dbConnection.getInstance(getBaseContext()).createToDo(name.getText().toString(), desc.getText().toString(), date.getText().toString(), pushmessage);
 
-            if(benachrichtigung.isChecked()) {
+            if (benachrichtigung.isChecked()) {
 
                 AlarmHelper.setAlarm(getApplicationContext(), getIntent().getIntExtra("id", -1), date.getText().toString(), name.getText().toString());
             }

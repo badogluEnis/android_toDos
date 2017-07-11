@@ -8,6 +8,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Switch;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class EditActivity extends AppCompatActivity {
 
     ImageButton save;
@@ -33,7 +36,7 @@ public class EditActivity extends AppCompatActivity {
         push = (Switch) findViewById(R.id.editBenachrichtigen);
 
         idTodo = getIntent().getIntExtra("id", -1);
-        if (idTodo == -1){
+        if (idTodo == -1) {
 
             ErrorAlert.showError(this);
         }
@@ -47,10 +50,9 @@ public class EditActivity extends AppCompatActivity {
 
         push.setChecked(todo.isPushmessage());
 
-        if (todo.isPushmessage()){
+        if (todo.isPushmessage()) {
             pushmeggaseOld = 1;
-        }
-        else{
+        } else {
             pushmeggaseOld = 0;
         }
 
@@ -60,29 +62,66 @@ public class EditActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (push.isChecked()) {
-                    pushmessage = 1;
+                Pattern forDate = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$");
+                Matcher mForDate = forDate.matcher(date.getText().toString());
+
+
+                if (name.getText().toString().length() >= 20) {
+
+                    name.setError("Nicht mehr als 20 Zeichen verwenden");
+                    return;
+                }
+
+                if (name.getText().toString().matches("")) {
+
+                    name.setError("Der Titel darf nicht leer sein");
+                    return;
+                }
+
+
+                if (mForDate.find()) {
+
+                    date.setError("Bitte verwenden sie folgendes Format: DD.MM.JJJJ");
+                    return;
+
+                }
+
+                if (desc.getText().length() >= 100) {
+
+                    desc.setError("Nicht mehr als 100 Zeichen verwenden");
+                    return;
+                }
+
+                if (desc.getText().toString().matches("")) {
+
+                    desc.setError("Die Beschreibung darf nicht leer sein");
+                    return;
+
+
                 } else {
-                    pushmessage = 0;
-                }
 
-                if (pushmeggaseOld != pushmessage){
-
-                    if (pushmessage == 1){ //eine Push message erstellen
-
-                        AlarmHelper.setAlarm(getApplicationContext(), getIntent().getIntExtra("id", -1), date.getText().toString(), name.getText().toString());
+                    if (push.isChecked()) {
+                        pushmessage = 1;
+                    } else {
+                        pushmessage = 0;
                     }
-                    else{ //die Push message löschen
 
-                        AlarmHelper.cancelAlarm(getApplicationContext(), getIntent().getIntExtra("id", -1));
+                    if (pushmeggaseOld != pushmessage) {
+
+                        if (pushmessage == 1) { //eine Push message erstellen
+
+                            AlarmHelper.setAlarm(getApplicationContext(), getIntent().getIntExtra("id", -1), date.getText().toString(), name.getText().toString());
+                        } else { //die Push message löschen
+
+                            AlarmHelper.cancelAlarm(getApplicationContext(), getIntent().getIntExtra("id", -1), name.getText().toString());
+                        }
                     }
+
+                    //Update der Datensätze
+                    ToDosDAO.getInstance(getBaseContext()).updateToDo(idTodo, name.getText().toString(), desc.getText().toString(), date.getText().toString(), pushmessage);
+                    Intent intent = new Intent(getApplicationContext(), StartActivity.class);
+                    startActivity(intent);
                 }
-
-
-                //Update der Datensätze
-                ToDosDAO.getInstance(getBaseContext()).updateToDo(idTodo, name.getText().toString(), desc.getText().toString(), date.getText().toString(), pushmessage);
-                Intent intent = new Intent(getApplicationContext(), StartActivity.class);
-                startActivity(intent);
 
             }
         });
@@ -96,14 +135,6 @@ public class EditActivity extends AppCompatActivity {
             }
 
         });
-
-
-
-
-
-
-
-
 
 
     }
