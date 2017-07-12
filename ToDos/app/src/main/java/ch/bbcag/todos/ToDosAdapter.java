@@ -38,6 +38,8 @@ public class ToDosAdapter extends ArrayAdapter<ToDos> {
         String text = todos.getTitle() + "  " + todos.getDate();
         title_date.setText(text);
 
+        // Ein Klcikewent auf der Liste
+
         AdapterView.OnItemClickListener mListClickedHandler = new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView parent, View v, int position, long id) {
 

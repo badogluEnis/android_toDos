@@ -163,6 +163,7 @@ public class ToDosDAO {
         );
     }
 
+    // Hier wird ein ToDo bei der Id zurückgegeben
     public ToDos getToDoByID(int id){
         String[] tableColumns = new String[]{ToDosEntry.TODOS_ID, ToDosEntry.TODOS_TITLE, ToDosEntry.TODOS_DESCRIPTION, ToDosEntry.TODOS_DATE, ToDosEntry.TODOS_PUSHMESSAGE, ToDosEntry.TODOS_ISOPEN};
 

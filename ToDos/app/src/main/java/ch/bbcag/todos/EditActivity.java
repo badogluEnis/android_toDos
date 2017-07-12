@@ -35,6 +35,8 @@ public class EditActivity extends AppCompatActivity {
 
         createActivity = new CreateActivity();
 
+        // Hier werden die Buttons usw. gecasted
+
         save = (ImageButton) findViewById(R.id.btnSave);
         cancel = (ImageButton) findViewById(R.id.btnCancel);
         date = (EditText) findViewById(R.id.editDate);
@@ -43,6 +45,8 @@ public class EditActivity extends AppCompatActivity {
         push = (Switch) findViewById(R.id.editBenachrichtigen);
 
         idTodo = getIntent().getIntExtra("id", -1);
+
+        // Wenn ein Fehler passiert wird hier ein Erroro ausgelöst
         if (idTodo == -1) {
 
             ErrorAlert.showError(this);
