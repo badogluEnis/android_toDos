@@ -44,11 +44,14 @@ public class DetailsActivity extends AppCompatActivity {
         push = (Switch) findViewById(R.id.InfoPush);
         push.setClickable(false);
 
+        // Wenn ein Fehler passiert wird hier ein Erroro ausgelöst
         idTodo = getIntent().getIntExtra("id", -1);
         if (idTodo == -1){
             
             ErrorAlert.showError(this);
         }
+
+        // Ein einziges ToDo wird ausgeles und dann werden die Werte gesetzt
         ToDos todo = ToDosDAO.getInstance(getBaseContext()).getToDoByID(idTodo);
 
         name.setText(todo.getTitle()); //aus datenbank auslesen!!
@@ -57,12 +60,21 @@ public class DetailsActivity extends AppCompatActivity {
 
         push.setChecked(todo.isPushmessage()); //aus datenbank auslesen!!
 
+        final String title_for_delete_not = todo.getTitle();
+        final boolean pushmessage_for_delete_not = todo.isPushmessage();
+
+        // Das ToDo wird gelöscht
         del.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
                 title = name.getText().toString();
+                // Wenn die Pushmessage erwünscht war wird hier der Alarm abegeschaltet
+                if (pushmessage_for_delete_not) {
+
+                    AlarmHelper.cancelAlarm(getApplicationContext(), idTodo, title_for_delete_not);
+                }
                 ToDosDAO.getInstance(getBaseContext()).deleteToDo(idTodo);
                 Intent intent = new Intent(getApplicationContext(), StartActivity.class);
                 Toast.makeText(getApplicationContext(), "Todo " + title + " wurde gelöscht", Toast.LENGTH_LONG).show();
@@ -70,6 +82,7 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
+        // Das EditActivity wird geöffnet
         edit.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -83,12 +96,18 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
+        // Das ToDo wird als erledigt markiert
         done.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
                 title = name.getText().toString();
+                // Wenn die Pushmessage erwünscht war wird hier der Alarm abegeschaltet
+                if (pushmessage_for_delete_not) {
+
+                    AlarmHelper.cancelAlarm(getApplicationContext(), idTodo, title_for_delete_not);
+                }
                 ToDosDAO.getInstance(getBaseContext()).closeToDo(idTodo);
                 Intent intent = new Intent(getApplicationContext(), StartActivity.class);
                 Toast.makeText(getApplicationContext(), "Todo " + title + " wurde als erledigt markiert", Toast.LENGTH_LONG).show();

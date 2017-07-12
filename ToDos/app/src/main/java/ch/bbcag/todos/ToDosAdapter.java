@@ -33,12 +33,12 @@ public class ToDosAdapter extends ArrayAdapter<ToDos> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.todos_list_item, parent, false);
         }
 
-        // Name setzen
+        // Name setzen(aus Titel und Datum)
         TextView title_date = (TextView) convertView.findViewById(R.id.title_date);
         String text = todos.getTitle() + "  " + todos.getDate();
         title_date.setText(text);
 
-        // Ein Klcikewent auf der Liste
+        // Ein Klickewent auf der Liste
 
         AdapterView.OnItemClickListener mListClickedHandler = new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView parent, View v, int position, long id) {
@@ -47,6 +47,8 @@ public class ToDosAdapter extends ArrayAdapter<ToDos> {
 
 
                 Intent intent;
+
+                // Je nachdem ob das ToDO offen oder zu ist wird ein anderes Activity geladen(da editieren, bearbeiten bei einem geschlossenen ToDO nicht verfügbar ist)
                 if (getItem(position).isopen()) {
 
                     intent = new Intent(getContext(), DetailsActivity.class);
@@ -55,6 +57,7 @@ public class ToDosAdapter extends ArrayAdapter<ToDos> {
                     intent = new Intent(getContext(), DetailsActivityClosed.class);
                 }
 
+                // Die ID wir dem intent übergeben um die Details des richtigen ToDos zu laden
                 intent.putExtra("id", toDoId);
                 getContext().startActivity(intent);
             }

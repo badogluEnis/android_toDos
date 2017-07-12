@@ -31,6 +31,8 @@ public class DetailsActivityClosed extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_closed);
 
+        // Die Button usw. werden gecasted
+
         del = (ImageButton) findViewById(R.id.infoBtnDel);
         edit = (ImageButton) findViewById(R.id.infoBtnEdit);
         done = (ImageButton) findViewById(R.id.infoBtnDone);
@@ -42,11 +44,15 @@ public class DetailsActivityClosed extends AppCompatActivity {
         push = (Switch) findViewById(R.id.InfoPush);
         push.setClickable(false);
 
+
+        // Wenn ein Fehler passiert wird hier ein Erroro ausgelöst
         idTodo = getIntent().getIntExtra("id", -1);
         if (idTodo == -1){
 
            ErrorAlert.showError(this);
         }
+
+        // Ein einziges ToDo wird ausgeles und dann werden die Werte gesetzt
         ToDos todo = ToDosDAO.getInstance(getBaseContext()).getToDoByID(idTodo);
 
         final String title_for_delete_not = todo.getTitle();
@@ -58,6 +64,7 @@ public class DetailsActivityClosed extends AppCompatActivity {
 
         push.setChecked(pushmessage_for_delete_not);
 
+        // Ein ToDo wird gelöscht
         del.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -65,6 +72,8 @@ public class DetailsActivityClosed extends AppCompatActivity {
 
                 ToDosDAO.getInstance(getBaseContext()).deleteToDo(getIntent().getIntExtra("id", -1));
                 Intent intent = new Intent(getApplicationContext(), StartActivity.class);
+
+                // Wenn die Pushmessage erwünscht war wird hier der Alarm abegeschaltet
                 if (pushmessage_for_delete_not) {
 
                     AlarmHelper.cancelAlarm(getApplicationContext(), idTodo, title_for_delete_not);

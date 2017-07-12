@@ -49,16 +49,17 @@ public class StartActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Die Buttons werden gecasted
         open = (Button) findViewById(R.id.buttonOpen);
         close = (Button) findViewById(R.id.buttonClosed);
         defaultbutton = open.getBackground();
 
-        Log.d("Database Test", ToDosDAO.getInstance(this).getToDos(1).toString());
 
         toDosAdapter = new ToDosAdapter(this);
         toDosAdapter.addAll(ToDosDAO.getInstance(this).getToDos(1));
         listView.setAdapter(toDosAdapter);
 
+        // Die Hintergrundfarbe des Buttons für die Liste wird gesetzt
         close.setBackgroundColor(0x00000000);
         open.setBackgroundDrawable(defaultbutton);
 
@@ -78,6 +79,7 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                // Die Hintergrundfarbe des Buttons für die Liste wird gesetzt und die Liste wird neu geladen
                 close.setBackgroundColor(0x00000000);
                 open.setBackgroundDrawable(defaultbutton);
                 isOpenShown = 1;
@@ -90,6 +92,7 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                // Die Hintergrundfarbe des Buttons für die Liste wird gesetzt und die Liste wird neu geladen
                 open.setBackgroundColor(0x00000000);
                 close.setBackgroundDrawable(defaultbutton);
                 isOpenShown = 0;

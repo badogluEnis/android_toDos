@@ -148,20 +148,6 @@ public class ToDosDAO {
         );
     }
 
-    //Hier wird ein ToDo geöffnet
-    public void reopenToDo(Integer id) {
-
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("isopen", 1);
-        String selection = ToDosEntry.TODOS_ID + " =?";
-        String[] selectionArgs = new String[] {String.valueOf(id)};
-        db.update(
-                ToDosEntry.TABLE_TODOS,
-                contentValues,
-                selection,
-                selectionArgs
-        );
-    }
 
     // Hier wird ein ToDo bei der Id zurückgegeben
     public ToDos getToDoByID(int id){
