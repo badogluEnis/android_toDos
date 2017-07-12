@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 
 public class ErrorAlert {
 
+    //Hier wird ein Error angezeigt falls die DB nicht ladet / falls nichts aus der db geladen werden kann.
     public static void showError(Context context){
 
         //error anzeigen!!

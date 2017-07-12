@@ -20,6 +20,7 @@ import static android.content.Context.ALARM_SERVICE;
 
 public class AlarmHelper  {
 
+    //Hier wird ein "Alarm" gesetzt. Somit wird man nachher benachrichtigt, falls das ToDo abläuft.
     public static void setAlarm(Context context, int todoId, String dateString, String title){
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
@@ -38,6 +39,7 @@ public class AlarmHelper  {
 
     }
 
+    //Hier wird der "Alarm" entfernt, damit man nicht mehr benachrichtigt wird, ob das ToDo abläuft.
     public static void cancelAlarm(Context context, int id, String title){
 
         Intent intent = new Intent(context, MyBroadcastReceiver.class);

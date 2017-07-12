@@ -12,6 +12,7 @@ import android.content.Intent;
 
 public class MyBroadcastReceiver extends BroadcastReceiver {
 
+    //Diese Funktion wird beim ablaufen eines "Alerts" ausgeführt.
     @Override
     public void onReceive(Context context, Intent intent) {
 

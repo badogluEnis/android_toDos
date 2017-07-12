@@ -19,6 +19,7 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
 
     private String date_shown;
 
+    //hier wird das Activity fest gelegt, auf welchem wir den Datepicker aufrufen wollen
     public void setActivity(Activity activity){
 
         this.activity = activity;
@@ -44,6 +45,7 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
         return date_shown;
     }
 
+    //Hier wird ein Datepicker erstellt und zurückgegeben
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
@@ -57,6 +59,7 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
         return new DatePickerDialog(getActivity(), this, year, month, day);
     }
 
+    //Diese funktion wird aufgerufen, falls
     public void onDateSet(DatePicker view, int year, int month, int day) {
 
         date_shown = day + ". " + (month +1) + ". " + year;
