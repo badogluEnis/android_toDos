@@ -36,8 +36,6 @@ public class AlarmHelper  {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
 
-
-        Toast.makeText(context, "Todo " + title + " wurde mit benachrichtigung erstellt", Toast.LENGTH_LONG).show();
     }
 
     public static void cancelAlarm(Context context, int id, String title){
@@ -47,7 +45,6 @@ public class AlarmHelper  {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
         alarmManager.cancel(pendingIntent);
 
-        Toast.makeText(context, "Sie werden nicht mehr über das Ablaufen von " + title + " benachrichtigt", Toast.LENGTH_LONG).show();
     }
 
 }

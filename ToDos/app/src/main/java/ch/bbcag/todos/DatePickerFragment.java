@@ -59,7 +59,7 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
 
-        date_shown = day + ". " + month + ". " + year;
+        date_shown = day + ". " + (month +1) + ". " + year;
         year_ip = year;
         month_ip = month;
         day_ip = day;

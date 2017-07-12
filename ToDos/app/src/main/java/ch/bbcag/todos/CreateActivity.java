@@ -73,8 +73,7 @@ public class CreateActivity extends AppCompatActivity {
         DatePickerFragment newFragment = new DatePickerFragment();
         newFragment.setActivity(this);
         newFragment.show(getFragmentManager(), "Datum wählen");
-        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+
     }
 
     //Hier wird ein ToDo erstellt.
@@ -123,6 +122,7 @@ public class CreateActivity extends AppCompatActivity {
             if (benachrichtigung.isChecked()) {
 
                 AlarmHelper.setAlarm(getApplicationContext(), getIntent().getIntExtra("id", -1), date.getText().toString(), name.getText().toString());
+                Toast.makeText(getApplicationContext(), "Todo " + name.getText().toString() + " wurde mit Benachrichtigung erstellt", Toast.LENGTH_LONG).show();
             }
             else{
 

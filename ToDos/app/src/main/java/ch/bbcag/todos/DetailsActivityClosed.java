@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DetailsActivityClosed extends AppCompatActivity {
 
@@ -47,11 +48,15 @@ public class DetailsActivityClosed extends AppCompatActivity {
            ErrorAlert.showError(this);
         }
         ToDos todo = ToDosDAO.getInstance(getBaseContext()).getToDoByID(idTodo);
+
+        final String title_for_delete_not = todo.getTitle();
+        final boolean pushmessage_for_delete_not = todo.isPushmessage();
+
         name.setText(todo.getTitle());
         date.setText(todo.getDate());
         desc.setText(todo.getDescription());
 
-        push.setChecked(todo.isPushmessage());
+        push.setChecked(pushmessage_for_delete_not);
 
         del.setOnClickListener(new View.OnClickListener() {
 
@@ -60,6 +65,11 @@ public class DetailsActivityClosed extends AppCompatActivity {
 
                 ToDosDAO.getInstance(getBaseContext()).deleteToDo(getIntent().getIntExtra("id", -1));
                 Intent intent = new Intent(getApplicationContext(), StartActivity.class);
+                if (pushmessage_for_delete_not) {
+
+                    AlarmHelper.cancelAlarm(getApplicationContext(), idTodo, title_for_delete_not);
+                }
+                Toast.makeText(getApplicationContext(), "Todo " + name.getText().toString() + " wurde gelöscht", Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         });

@@ -65,7 +65,7 @@ public class DetailsActivity extends AppCompatActivity {
                 title = name.getText().toString();
                 ToDosDAO.getInstance(getBaseContext()).deleteToDo(idTodo);
                 Intent intent = new Intent(getApplicationContext(), StartActivity.class);
-                Toast.makeText(getApplicationContext(), "Todo Namens " + title + " wurde gelöscht", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Todo " + title + " wurde gelöscht", Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         });
@@ -78,7 +78,6 @@ public class DetailsActivity extends AppCompatActivity {
                 title = name.getText().toString();
                 Intent intent = new Intent(getApplicationContext(), EditActivity.class);
                 intent.putExtra("id", idTodo);
-                Toast.makeText(getApplicationContext(), "Todo Namens " + title + " wird nun editiert", Toast.LENGTH_LONG).show();
                 startActivity(intent);
 
             }
@@ -92,7 +91,7 @@ public class DetailsActivity extends AppCompatActivity {
                 title = name.getText().toString();
                 ToDosDAO.getInstance(getBaseContext()).closeToDo(idTodo);
                 Intent intent = new Intent(getApplicationContext(), StartActivity.class);
-                Toast.makeText(getApplicationContext(), "Todo Namens " + title + " wurde als erledigt markiert", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Todo " + title + " wurde als erledigt markiert", Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         });

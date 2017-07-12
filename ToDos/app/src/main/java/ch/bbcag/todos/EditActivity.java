@@ -1,9 +1,11 @@
 package ch.bbcag.todos;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Switch;
@@ -66,6 +68,8 @@ public class EditActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 createActivity.showDatePickerDialog(v);
             }
         });
@@ -125,16 +129,23 @@ public class EditActivity extends AppCompatActivity {
                         if (pushmessage == 1) { //eine Push message erstellen
 
                             AlarmHelper.setAlarm(getApplicationContext(), getIntent().getIntExtra("id", -1), date.getText().toString(), name.getText().toString());
+                            Toast.makeText(getApplicationContext(), "Todo " + name.getText().toString() + " wurde geändert, Sie erhalten eine Benachrichtigung", Toast.LENGTH_LONG).show();
+
                         } else { //die Push message löschen
 
                             AlarmHelper.cancelAlarm(getApplicationContext(), getIntent().getIntExtra("id", -1), name.getText().toString());
+                            Toast.makeText(getApplicationContext(), "Todo " + name.getText().toString() + " wurde geändert, Sie erhalten keine Benachrichtigung mehr", Toast.LENGTH_LONG).show();
                         }
+                    }
+                    else{
+
+                        Toast.makeText(getApplicationContext(), "Todo " + name.getText().toString() + " wurde geändert", Toast.LENGTH_LONG).show();
                     }
 
                     //Update der Datensätze
                     ToDosDAO.getInstance(getBaseContext()).updateToDo(idTodo, name.getText().toString(), desc.getText().toString(), date.getText().toString(), pushmessage);
                     Intent intent = new Intent(getApplicationContext(), StartActivity.class);
-                    Toast.makeText(getApplicationContext(), "Todo " + name.getText().toString() + " wurde geändert", Toast.LENGTH_LONG).show();
+
                     startActivity(intent);
                 }
 
@@ -145,6 +156,7 @@ public class EditActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Toast.makeText(getApplicationContext(), "Todo " + name.getText().toString() + " wurde nicht geändert", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), StartActivity.class);
                 startActivity(intent);
 

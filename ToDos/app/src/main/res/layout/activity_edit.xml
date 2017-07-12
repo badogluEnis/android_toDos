@@ -32,7 +32,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="80dp"
         android:ems="10"
-        android:hint="Date"
+        android:hint="Ablaufdatum"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/editBenachrichtigen"
         app:layout_constraintHorizontal_bias="0.149"
