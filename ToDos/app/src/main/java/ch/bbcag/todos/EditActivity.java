@@ -134,7 +134,7 @@ public class EditActivity extends AppCompatActivity {
                     //Update der Datensätze
                     ToDosDAO.getInstance(getBaseContext()).updateToDo(idTodo, name.getText().toString(), desc.getText().toString(), date.getText().toString(), pushmessage);
                     Intent intent = new Intent(getApplicationContext(), StartActivity.class);
-                    Toast.makeText(getApplicationContext(), "Todo " + name.getText().toString() + " wurde geupdated", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Todo " + name.getText().toString() + " wurde geändert", Toast.LENGTH_LONG).show();
                     startActivity(intent);
                 }
 
