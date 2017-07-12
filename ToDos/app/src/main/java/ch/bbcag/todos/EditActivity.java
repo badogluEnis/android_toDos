@@ -15,7 +15,7 @@ import android.widget.Toast;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class EditActivity extends AppCompatActivity {
+public class EditActivity extends AppCompatActivity implements DateSettable {
 
     ImageButton save;
     ImageButton cancel;
@@ -26,14 +26,13 @@ public class EditActivity extends AppCompatActivity {
     int pushmessage;
     int pushmeggaseOld;
     int idTodo;
-    CreateActivity createActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
-        createActivity = new CreateActivity();
+
 
         // Hier werden die Buttons usw. gecasted
 
@@ -67,14 +66,17 @@ public class EditActivity extends AppCompatActivity {
             pushmeggaseOld = 0;
         }
 
-        date.setOnClickListener(new View.OnClickListener() {
+        date.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
             @Override
-            public void onClick(View v) {
+            public void onFocusChange(View v, boolean hasFocus) {
 
-                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                createActivity.showDatePickerDialog(v);
+                if (hasFocus){
+
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    PickerHelper.showDatePickerDialog(EditActivity.this);
+                }
             }
         });
 
@@ -157,13 +159,13 @@ public class EditActivity extends AppCompatActivity {
         });
 
         cancel.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
 
                 Toast.makeText(getApplicationContext(), "Todo " + name.getText().toString() + " wurde nicht geändert", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), StartActivity.class);
                 startActivity(intent);
-
             }
 
         });
@@ -171,4 +173,9 @@ public class EditActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void setDate(String dateText) {
+
+        date.setText(dateText);
+    }
 }

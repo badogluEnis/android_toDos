@@ -1,5 +1,6 @@
 package ch.bbcag.todos;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +17,7 @@ import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CreateActivity extends AppCompatActivity {
+public class CreateActivity extends AppCompatActivity implements DateSettable {
 
     EditText date;
     EditText name;
@@ -40,15 +41,30 @@ public class CreateActivity extends AppCompatActivity {
         desc = (EditText) findViewById(R.id.description);
         datePicker = new DatePickerFragment();
 
+        date.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
-        date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                if (hasFocus) {
+
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    PickerHelper.showDatePickerDialog(CreateActivity.this);
+
+                }
+
+            }
+        });
+
+        /*date.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-                showDatePickerDialog(v);
+                showDatePickerDialog(v, CreateActivity.this);
             }
-        });
+        }); */
 
         createButton.setOnClickListener(new View.OnClickListener() {
 
@@ -62,19 +78,12 @@ public class CreateActivity extends AppCompatActivity {
     }
 
     //Hier Schreiben wir den Text, vom Datepicker ind das Textedit.
+    @Override
     public void setDate(String dateText) {
 
         date.setText(dateText);
     }
 
-    //Hier wird der Datepicker aufgerufen.
-    public void showDatePickerDialog(View v) {
-
-        DatePickerFragment newFragment = new DatePickerFragment();
-        newFragment.setActivity(this);
-        newFragment.show(getFragmentManager(), "Datum wählen");
-
-    }
 
     //Hier wird ein ToDo erstellt.
     public void createTodo(View view) {

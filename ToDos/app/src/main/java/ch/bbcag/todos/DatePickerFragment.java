@@ -63,7 +63,7 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
         year_ip = year;
         month_ip = month;
         day_ip = day;
-        ((CreateActivity)activity).setDate(date_shown);
+        ((DateSettable)activity).setDate(date_shown);
 
     }
 }
