@@ -40,6 +40,7 @@ public class CreateActivity extends AppCompatActivity {
         desc = (EditText) findViewById(R.id.description);
         datePicker = new DatePickerFragment();
 
+        // Der DatePickerDialog wird aufgerufen und man kann ein Datum setzten
 
         date.setOnClickListener(new View.OnClickListener() {
 
@@ -50,6 +51,7 @@ public class CreateActivity extends AppCompatActivity {
             }
         });
 
+        // Das ToDo wird gemacht
         createButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -117,8 +119,10 @@ public class CreateActivity extends AppCompatActivity {
                 pushmessage = 0;
             }
 
+            // Das ToDO wird erstellt
             dbConnection.getInstance(getBaseContext()).createToDo(name.getText().toString(), desc.getText().toString(), date.getText().toString(), pushmessage);
 
+            // Wenn eine benachrichtigung erwünscht wird wird sie erstellt sonst nicht
             if (benachrichtigung.isChecked()) {
 
                 AlarmHelper.setAlarm(getApplicationContext(), getIntent().getIntExtra("id", -1), date.getText().toString(), name.getText().toString());

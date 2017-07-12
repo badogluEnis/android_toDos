@@ -53,6 +53,8 @@ public class EditActivity extends AppCompatActivity {
         }
 
         ToDos todo;
+
+        // Es wird nach einem bestimmten ToDo gesucht und es wird zurückgegeben
         todo = ToDosDAO.getInstance(getBaseContext()).getToDoByID(getIntent().getIntExtra("id", -1));
 
         name.setText(todo.getTitle());
@@ -88,6 +90,7 @@ public class EditActivity extends AppCompatActivity {
                 Matcher mForDate = forDate.matcher(date.getText().toString());
 
 
+                // Die neuen eingaben werden Validiert
                 if (name.getText().toString().length() >= 20) {
 
                     name.setError("Nicht mehr als 20 Zeichen verwenden");
@@ -156,6 +159,7 @@ public class EditActivity extends AppCompatActivity {
             }
         });
 
+        // Das ToDo wurde nicht neu gespeichert
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
