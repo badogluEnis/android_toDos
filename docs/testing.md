@@ -55,4 +55,4 @@ Ablauf               | 1.	Klick auf das ToDo in der Liste 2.	Klick auf ToDo bear
 Erwartetes Resultat  | Die neuen Angaben werden übernommen
 
 
-  #### [Zuück](../README.md)
+  #### [Zurück](../README.md)
