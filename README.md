@@ -9,6 +9,10 @@ Projektmitarbeiter
 * [Enis Badoglu](https://github.com/badogluEnis) (Team Member)
 
 
+## Dokumentation
+
+* [Testkonzept](docs/testing.md)
+
 
 ## Definition of Done
 
